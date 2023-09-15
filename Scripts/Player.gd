@@ -4,6 +4,7 @@ var speed
 
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
+const SONIC_SPEED = 11.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.03
 
@@ -15,6 +16,9 @@ var t_bob = 0.0
 const BASE_FOV = 85
 const FOV_CHANGE = 1.5
 
+const SONIC_TIME = 2.5
+var sonic_timer = 0.0
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var fps_holder = $FPSHolder
@@ -22,6 +26,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var animTree = $FPSHolder/SK_Legs/AnimationTree
 @onready var animPlayer = $FPSHolder/SK_Legs/AnimationPlayer
 @onready var sk_legs = $FPSHolder/SK_Legs
+@onready var leg_look_at_point = $FPSHolder/LegLookAtPoint
+
+const BASE_LEGS_ROTATION = -135.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -40,9 +47,17 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	
 	if  Input.is_action_pressed("Sprint") and is_on_floor():
-		speed = SPRINT_SPEED
-		animTree.set("parameters/SpeedBlend/TimeScale/scale", 1.5)
+		if sonic_timer < SONIC_TIME:
+			sonic_timer += delta
+		if sonic_timer >= SONIC_TIME:
+			speed = SONIC_SPEED
+			animTree.set("parameters/SpeedBlend/TimeScale/scale", 2)
+		else:
+			speed = SPRINT_SPEED
+			animTree.set("parameters/SpeedBlend/TimeScale/scale", 1.5)
 	else:
+		if sonic_timer != 0:
+			sonic_timer = 0
 		speed = WALK_SPEED
 		animTree.set("parameters/SpeedBlend/TimeScale/scale", 1.0)
 
@@ -62,16 +77,16 @@ func _physics_process(delta):
 	t_bob += delta * velocity.length() * float(is_on_floor())
 	cam.transform.origin = _headbob(t_bob)  
 	
-	var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2.0)
+	var velocity_clamped = clamp(velocity.length(), 1, SONIC_SPEED * 2.0)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	cam.fov = lerp(cam.fov, target_fov, delta * 8.0)
 	
 	animTree.set("parameters/conditions/jump", !is_on_floor())
 	animTree.set("parameters/conditions/land", is_on_floor())
 	
-	_handle_directional_walk_animation(input_dir, delta)
+	_handle_directional_walk_animation(delta)
 	
-	_handle_leg_rotation(input_dir, delta)
+	_handle_leg_rotation(delta)
 	
 	move_and_slide()
 
@@ -81,15 +96,11 @@ func _headbob(time) -> Vector3:
 	pos.x = cos(time * HEAD_BOB_FREQUENCY / 2.0) * HEAD_BOB_AMPLITUDE
 	return pos
 
-func _handle_leg_rotation(input_dir, delta):
-	if input_dir.x == 0.0:
-		sk_legs.rotation.y = lerp_angle(sk_legs.rotation.y,-135.0, delta * 2.0)
-	elif input_dir.x == 1.0:
-		sk_legs.rotation.y = lerp_angle(sk_legs.rotation.y,-180.0, delta * 2.0)
-	else:
-		sk_legs.rotation.y = lerp_angle(sk_legs.rotation.y,-90.0, delta * 2.0)		
+func _handle_leg_rotation(delta):
+	# YET TO BE IMPLEMENTED
+	return
 
-func _handle_directional_walk_animation(input_dir, delta):
+func _handle_directional_walk_animation(delta):
 	var current_blend = animTree.get("parameters/SpeedBlend/SpeedBlend1D/blend_position")
 	if (velocity.y > 0.0):
 		animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), 1.0, 0.2))
@@ -99,3 +110,4 @@ func _handle_directional_walk_animation(input_dir, delta):
 		animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), 1.0, 0.2))
 	else:
 		animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), 0.0, 0.2))
+	return
