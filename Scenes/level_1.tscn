@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://k7efhgdww5h"]
+[gd_scene load_steps=10 format=3 uid="uid://k7efhgdww5h"]
 
 [ext_resource type="PackedScene" uid="uid://c6aqredf4dbx2" path="res://Prefabs/Player.tscn" id="1_t3kua"]
+[ext_resource type="Shader" path="res://Shaders/speed_lines.gdshader" id="2_mrx1x"]
+[ext_resource type="Texture2D" uid="uid://c3rov855wpxk7" path="res://Shaders/speedlines.png" id="3_gcqkg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b0wy3"]
 sky_top_color = Color(0, 0.494118, 0.635294, 1)
@@ -36,6 +38,16 @@ adjustment_contrast = 0.9
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r373n"]
 albedo_color = Color(0.52549, 0.701961, 0.0196078, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f4et7"]
+shader = ExtResource("2_mrx1x")
+shader_parameter/line_color = null
+shader_parameter/line_count = 0.5
+shader_parameter/line_density = 0.5
+shader_parameter/line_faloff = 0.25
+shader_parameter/mask_size = 0.1
+shader_parameter/mask_edge = 0.5
+shader_parameter/animation_speed = 0.5
+
 [node name="Node3D" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
@@ -56,3 +68,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.69579, 0)
 use_collision = true
 size = Vector3(50, 0.1, 50)
 material = SubResource("StandardMaterial3D_r373n")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Vignette" type="TextureRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_f4et7")
+anchors_preset = -1
+anchor_left = -1.278
+anchor_top = -1.167
+anchor_right = 2.278
+anchor_bottom = 2.167
+offset_left = 0.256104
+offset_top = 0.216064
+offset_right = -0.256104
+offset_bottom = -0.216064
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = ExtResource("3_gcqkg")
