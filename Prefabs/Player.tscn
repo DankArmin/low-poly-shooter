@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c6aqredf4dbx2"]
+[gd_scene load_steps=30 format=3 uid="uid://c6aqredf4dbx2"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_mn3nj"]
 
@@ -693,6 +693,46 @@ states/SpeedBlend/node = SubResource("AnimationNodeBlendTree_vrv6u")
 states/SpeedBlend/position = Vector2(409, 100)
 transitions = ["Start", "SpeedBlend", SubResource("AnimationNodeStateMachineTransition_f5ild"), "SpeedBlend", "Jump", SubResource("AnimationNodeStateMachineTransition_4s4k8"), "Jump", "SpeedBlend", SubResource("AnimationNodeStateMachineTransition_827v1")]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ds1dc"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 0.0
+emission_ring_radius = 4.0
+emission_ring_inner_radius = 2.0
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+gravity = Vector3(0, 2, 0)
+damping_min = 0.1
+damping_max = 0.5
+angle_max = 720.0
+
+[sub_resource type="Curve" id="Curve_e2m30"]
+_data = [Vector2(0, 0.136842), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_adfek"]
+offsets = PackedFloat32Array(0, 0.469565, 0.713043, 1)
+colors = PackedColorArray(1, 1, 1, 0, 0.694088, 0.694088, 0.694088, 1, 0.605274, 0.605274, 0.605274, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pijrj"]
+gradient = SubResource("Gradient_adfek")
+width = 256
+height = 256
+fill_from = Vector2(1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gabiu"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture2D_pijrj")
+disable_receive_shadows = true
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_snsu0"]
+material = SubResource("StandardMaterial3D_gabiu")
+shape = 0
+section_length = 0.65
+curve = SubResource("Curve_e2m30")
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pq6w0"]
 
 [node name="Player" type="CharacterBody3D"]
@@ -712,7 +752,7 @@ bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 0.284401, -9.26698e-08)
+bones/0/position = Vector3(0, 0.6, -1.95505e-07)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Thigh.L"
@@ -720,28 +760,28 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 2.38419e-07, -1.64038e-08, 0.99763, 0.0688024, -2.37854e-07, -0.0688024, 0.99763, 0.5, 2, -3.25841e-07)
 bones/1/enabled = true
 bones/1/position = Vector3(0.5, 2, -3.25841e-07)
-bones/1/rotation = Quaternion(-0.158341, -0.0613505, -0.00985795, 0.985427)
+bones/1/rotation = Quaternion(-0.227071, -0.060508, -0.014137, 0.971894)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Shin.L"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, -3.33084e-08, 2.33815e-09, 3.33084e-08, 0.990193, -0.139706, 2.33814e-09, 0.139706, 0.990193, 1.33985e-08, 2.90689, 1.49012e-08)
 bones/2/enabled = true
 bones/2/position = Vector3(1.33985e-08, 2.90689, 1.49012e-08)
-bones/2/rotation = Quaternion(0.318849, 4.43215e-09, 7.51509e-08, 0.947805)
+bones/2/rotation = Quaternion(0.450982, 1.28886e-09, 1.09138e-07, 0.892533)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Thigh.R"
 bones/3/parent = 0
 bones/3/rest = Transform3D(1, 0, -2.38419e-07, 1.64038e-08, 0.99763, 0.0688024, 2.37854e-07, -0.0688024, 0.99763, -0.5, 2, -3.25841e-07)
 bones/3/enabled = true
 bones/3/position = Vector3(-0.5, 2, -3.25841e-07)
-bones/3/rotation = Quaternion(-0.158341, 0.0613506, 0.00985795, 0.985427)
+bones/3/rotation = Quaternion(-0.227071, 0.060508, 0.014137, 0.971894)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Shin.R"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 3.33084e-08, -2.33815e-09, -3.33084e-08, 0.990193, -0.139706, -2.33814e-09, 0.139706, 0.990193, -1.33985e-08, 2.90689, 1.49012e-08)
 bones/4/enabled = true
 bones/4/position = Vector3(-1.33985e-08, 2.90689, 1.49012e-08)
-bones/4/rotation = Quaternion(0.318849, -5.03938e-10, -7.55286e-08, 0.947805)
+bones/4/rotation = Quaternion(0.450982, 2.81275e-09, -1.09863e-07, 0.892533)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "HeelIK.L"
 bones/5/parent = -1
@@ -806,10 +846,16 @@ parameters/SpeedBlend/TimeScale/scale = 1.0
 
 [node name="Camera3D" type="Camera3D" parent="FPSHolder"]
 
-[node name="WeaponHolder" type="Node3D" parent="FPSHolder"]
+[node name="SpeedLines" type="GPUParticles3D" parent="FPSHolder/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+visible = false
+amount = 25
+local_coords = true
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_ds1dc")
+draw_pass_1 = SubResource("RibbonTrailMesh_snsu0")
 
-[node name="LegLookAtPoint" type="Node3D" parent="FPSHolder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.33596, -2.44945)
+[node name="WeaponHolder" type="Node3D" parent="FPSHolder"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1.35, 0, 0, 0, 1, 0, -1.2, 0)

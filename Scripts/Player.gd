@@ -26,12 +26,13 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var animTree = $FPSHolder/SK_Legs/AnimationTree
 @onready var animPlayer = $FPSHolder/SK_Legs/AnimationPlayer
 @onready var sk_legs = $FPSHolder/SK_Legs
-@onready var leg_look_at_point = $FPSHolder/LegLookAtPoint
+@onready var speed_lines = $FPSHolder/Camera3D/SpeedLines
 
 const BASE_LEGS_ROTATION = -135.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	speed_lines.hide()
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -52,14 +53,17 @@ func _physics_process(delta):
 		if sonic_timer >= SONIC_TIME:
 			speed = SONIC_SPEED
 			animTree.set("parameters/SpeedBlend/TimeScale/scale", 2)
+			speed_lines.show()
 		else:
 			speed = SPRINT_SPEED
 			animTree.set("parameters/SpeedBlend/TimeScale/scale", 1.5)
+			speed_lines.hide()
 	else:
 		if sonic_timer != 0:
 			sonic_timer = 0
 		speed = WALK_SPEED
 		animTree.set("parameters/SpeedBlend/TimeScale/scale", 1.0)
+		speed_lines.hide()
 
 	var input_dir = Input.get_vector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward")
 	var direction = (fps_holder.transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)).normalized()
