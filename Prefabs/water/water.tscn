@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv6666r3ikgg"]
+
+[ext_resource type="Shader" uid="uid://c386ou26ur32c" path="res://Prefabs/water/water.tres" id="1_t4tvt"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vj6uo"]
+render_priority = 0
+shader = ExtResource("1_t4tvt")
+shader_parameter/WaveIntensity = 0.2
+shader_parameter/ColorParameter = Color(0, 0.266667, 0.533333, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w6uai"]
+material = SubResource("ShaderMaterial_vj6uo")
+size = Vector2(10, 10)
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_k3kim"]
+
+[node name="water" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_w6uai")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.703804, 0.710394, 0, -0.710394, 0.703804, 0, -0.171632, 0)
+mesh = SubResource("CylinderMesh_k3kim")
