@@ -27,6 +27,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var animPlayer = $FPSHolder/SK_Legs/AnimationPlayer
 @onready var sk_legs = $FPSHolder/SK_Legs
 @onready var speed_lines = $FPSHolder/Camera3D/SpeedLines
+@onready var arms_animation_player = $FPSHolder/Camera3D/WeaponHolder/SK_Arms/ArmsAnimationPlayer
+@onready var arms_animation_tree = $FPSHolder/Camera3D/WeaponHolder/SK_Arms/AnimationTree
 
 const BASE_LEGS_ROTATION = -135.0
 
@@ -48,6 +50,13 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	
 	var input_dir = Input.get_vector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward")
+	
+	var current_blend = arms_animation_tree.get("parameters/IdleToWalk/blend_position")
+	
+	if velocity.y == 0 && velocity.x == 0:
+		arms_animation_tree.set("parameters/IdleToWalk/blend_position", lerp(float(current_blend), 0.0, 0.2))
+	else:
+		arms_animation_tree.set("parameters/IdleToWalk/blend_position", lerp(float(current_blend), 1.0, 0.2))
 	
 	if  Input.is_action_pressed("Sprint") and is_on_floor() and (abs(input_dir.x) > 0 || abs(input_dir.y) > 0):
 		if sonic_timer < SONIC_TIME:
