@@ -29,6 +29,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var speed_lines = $FPSHolder/Camera3D/SpeedLines
 @onready var arms_animation_player = $FPSHolder/Camera3D/WeaponHolder/SK_Arms/ArmsAnimationPlayer
 @onready var arms_animation_tree = $FPSHolder/Camera3D/WeaponHolder/SK_Arms/AnimationTree
+@onready var sk_arms = $FPSHolder/Camera3D/WeaponHolder/SK_Arms
+@onready var arms_state_machine = arms_animation_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
 
 const BASE_LEGS_ROTATION = -135.0
 
@@ -43,6 +45,8 @@ func _unhandled_input(event):
 		cam.rotation.x = clamp(cam.rotation.x, deg_to_rad(-90.0), deg_to_rad(90.0))
 
 func _physics_process(delta):
+	_handle_punch_input()
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
@@ -50,13 +54,6 @@ func _physics_process(delta):
 		velocity.y = JUMP_VELOCITY
 	
 	var input_dir = Input.get_vector("Move_Left", "Move_Right", "Move_Forward", "Move_Backward")
-	
-	var current_blend = arms_animation_tree.get("parameters/IdleToWalk/blend_position")
-	
-	if velocity.y == 0 && velocity.x == 0:
-		arms_animation_tree.set("parameters/IdleToWalk/blend_position", lerp(float(current_blend), 0.0, 0.2))
-	else:
-		arms_animation_tree.set("parameters/IdleToWalk/blend_position", lerp(float(current_blend), 1.0, 0.2))
 	
 	if  Input.is_action_pressed("Sprint") and is_on_floor() and (abs(input_dir.x) > 0 || abs(input_dir.y) > 0):
 		if sonic_timer < SONIC_TIME:
@@ -103,6 +100,8 @@ func _physics_process(delta):
 	
 	_handle_leg_rotation(delta)
 	
+	_handle_arm_idle_walk()
+	
 	move_and_slide()
 
 func _headbob(time) -> Vector3:
@@ -126,3 +125,36 @@ func _handle_directional_walk_animation(delta):
 	else:
 		animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), 0.0, 0.2))
 	return
+	
+func _handle_arm_idle_walk():
+	if !sk_arms:
+		return
+	var current_blend = arms_animation_tree.get("parameters/IdleToWalk/blend_position")
+	if velocity.y == 0 && velocity.x == 0:
+		arms_animation_tree.set("parameters/IdleToWalk/blend_position", lerp(float(current_blend), 0.0, 0.2))
+	else:
+		arms_animation_tree.set("parameters/IdleToWalk/blend_position", lerp(float(current_blend), 1.0, 0.2))
+		
+func _handle_punch():
+	if !sk_arms:
+		return
+	
+	arms_animation_tree.set("parameters/conditions/punch", true)
+	var timer = Timer.new()
+	timer.set_wait_time(.1)
+	timer.set_one_shot(true)
+	self.add_child(timer)
+	timer.start()
+	await get_tree().create_timer(0.00001).timeout
+	arms_animation_tree.set("parameters/conditions/punch", false)
+	
+func _handle_punch_input():
+	if arms_state_machine.get_current_node() == "PunchSpeedBlend":
+		return
+	if Input.is_action_just_pressed("Attack1"):
+		arms_animation_tree.set("parameters/PunchSpeedBlend/PunchBlend/blend_position", 0)
+		_handle_punch()
+	elif Input.is_action_just_pressed("Attack2"):
+		arms_animation_tree.set("parameters/PunchSpeedBlend/PunchBlend/blend_position", 1)
+		_handle_punch()
+	

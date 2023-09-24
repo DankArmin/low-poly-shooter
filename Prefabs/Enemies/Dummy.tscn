@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxei062syxuyv"]
+
+[ext_resource type="Script" path="res://Scripts/HurtBox.gd" id="1_3nuuu"]
+[ext_resource type="Script" path="res://Prefabs/Enemies/EnemyStats.gd" id="1_sbkt4"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sibc2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jxtyc"]
+
+[node name="Dummy" type="Node3D"]
+script = ExtResource("1_sbkt4")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_sibc2")
+
+[node name="HurtBox" type="Area3D" parent="MeshInstance3D"]
+script = ExtResource("1_3nuuu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/HurtBox"]
+shape = SubResource("CapsuleShape3D_jxtyc")

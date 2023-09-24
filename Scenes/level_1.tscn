@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://k7efhgdww5h"]
+[gd_scene load_steps=14 format=3 uid="uid://k7efhgdww5h"]
 
 [ext_resource type="PackedScene" uid="uid://c6aqredf4dbx2" path="res://Prefabs/Player.tscn" id="1_t3kua"]
 [ext_resource type="Shader" path="res://Shaders/speed_lines.gdshader" id="2_mrx1x"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bgj8yhrw6q2nt" path="res://Prefabs/Trees/tree_1.tscn" id="4_inaes"]
 [ext_resource type="PackedScene" uid="uid://b0rapafededys" path="res://Prefabs/Trees/tree_3.tscn" id="5_maphl"]
 [ext_resource type="PackedScene" uid="uid://d0rt7c2apkwqu" path="res://Prefabs/Trees/tree_2.tscn" id="6_hr8a6"]
+[ext_resource type="PackedScene" uid="uid://bxei062syxuyv" path="res://Prefabs/Enemies/Dummy.tscn" id="7_wyurc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_b0wy3"]
 sky_top_color = Color(0, 0.494118, 0.635294, 1)
@@ -143,3 +144,6 @@ transform = Transform3D(-0.211751, 0, -0.977324, 0, 1, 0, 0.977324, 0, -0.211751
 
 [node name="tree_17" parent="Trees" instance=ExtResource("6_hr8a6")]
 transform = Transform3D(-0.211751, 0, -0.977324, 0, 1, 0, 0.977324, 0, -0.211751, -14, -2, 2)
+
+[node name="Dummy" parent="." instance=ExtResource("7_wyurc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.238845, -0.470651, -4.45817)
