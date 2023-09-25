@@ -1,0 +1,122 @@
+[gd_scene load_steps=9 format=3 uid="uid://cc0spndybrjyf"]
+
+[ext_resource type="PackedScene" uid="uid://c6aqredf4dbx2" path="res://Prefabs/Player.tscn" id="1_edj5f"]
+[ext_resource type="Material" uid="uid://c5gg1icrfoc0x" path="res://Materials/foliage.tres" id="2_4rohe"]
+[ext_resource type="PackedScene" uid="uid://bgj8yhrw6q2nt" path="res://Prefabs/Trees/tree_1.tscn" id="3_u0a5e"]
+[ext_resource type="PackedScene" uid="uid://d0rt7c2apkwqu" path="res://Prefabs/Trees/tree_2.tscn" id="4_7rx6r"]
+[ext_resource type="PackedScene" uid="uid://b0rapafededys" path="res://Prefabs/Trees/tree_3.tscn" id="5_37mf3"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ruy2a"]
+sky_top_color = Color(0.360784, 0.654902, 0.854902, 1)
+sky_horizon_color = Color(0.74902, 0.682353, 0.513726, 1)
+sky_curve = 0.0803832
+ground_bottom_color = Color(0.313726, 0.552941, 0.745098, 1)
+ground_horizon_color = Color(0.435294, 0.701961, 0.772549, 1)
+
+[sub_resource type="Sky" id="Sky_nkwi2"]
+sky_material = SubResource("ProceduralSkyMaterial_ruy2a")
+
+[sub_resource type="Environment" id="Environment_7l4n4"]
+background_mode = 2
+sky = SubResource("Sky_nkwi2")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 0, 0)
+tonemap_mode = 1
+tonemap_white = 5.0
+ssr_enabled = true
+ssao_enabled = true
+ssao_intensity = 5.0
+ssao_detail = 1.0
+ssil_enabled = true
+sdfgi_enabled = true
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_normalized = true
+fog_enabled = true
+fog_light_color = Color(0.631373, 0.513726, 0, 1)
+fog_light_energy = 0.1
+fog_sky_affect = 0.0
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(1, 0.533333, 0, 1)
+volumetric_fog_sky_affect = 0.045
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 0.9
+
+[node name="level_test" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_edj5f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.82211, 0)
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_7l4n4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 0.754847, 0.655901, 0, -0.655901, 0.754847, 0, 7.24191, 0)
+shadow_enabled = true
+
+[node name="Terrain" type="Node3D" parent="."]
+
+[node name="Floor" type="CSGBox3D" parent="Terrain"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.642783, 0)
+use_collision = true
+size = Vector3(50, 0.5, 50)
+material = ExtResource("2_4rohe")
+
+[node name="Trees" type="Node3D" parent="Terrain"]
+
+[node name="tree_1" parent="Terrain/Trees" instance=ExtResource("3_u0a5e")]
+transform = Transform3D(-0.0599859, 0, -0.998199, 0, 1, 0, 0.998199, 0, -0.0599859, 1, -0.5, 9)
+
+[node name="tree_2" parent="Terrain/Trees" instance=ExtResource("3_u0a5e")]
+transform = Transform3D(0.809591, 0, -0.586994, 0, 1, 0, 0.586994, 0, 0.809591, 15.1796, -0.392783, -5.15381)
+
+[node name="tree_3" parent="Terrain/Trees" instance=ExtResource("3_u0a5e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.0298, -0.392787, -16.6739)
+
+[node name="tree_4" parent="Terrain/Trees" instance=ExtResource("3_u0a5e")]
+transform = Transform3D(0.329625, 0, 0.944112, 0, 1, 0, -0.944112, 0, 0.329625, 17.9499, -0.392783, 15.112)
+
+[node name="tree_5" parent="Terrain/Trees" instance=ExtResource("4_7rx6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2117, -0.392779, 3.91003)
+
+[node name="tree_6" parent="Terrain/Trees" instance=ExtResource("4_7rx6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.61918, -0.392783, -18.8115)
+
+[node name="tree_7" parent="Terrain/Trees" instance=ExtResource("4_7rx6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.04879, -0.392783, -11.7077)
+
+[node name="tree_8" parent="Terrain/Trees" instance=ExtResource("4_7rx6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.45424, -0.392779, 12.1918)
+
+[node name="tree_9" parent="Terrain/Trees" instance=ExtResource("4_7rx6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.9147, -0.392779, 16.3496)
+
+[node name="tree_10" parent="Terrain/Trees" instance=ExtResource("4_7rx6r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.0146, -0.392787, -5.42104)
+
+[node name="tree_11" parent="Terrain/Trees" instance=ExtResource("5_37mf3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.4088, -0.392779, 1.52725)
+
+[node name="tree_12" parent="Terrain/Trees" instance=ExtResource("5_37mf3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3769, -0.392783, -17.2608)
+
+[node name="tree_13" parent="Terrain/Trees" instance=ExtResource("5_37mf3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.62226, -0.392783, 17.8664)
+
+[node name="tree_14" parent="Terrain/Trees" instance=ExtResource("5_37mf3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.16849, -0.392783, 18.5577)
+
+[node name="tree_15" parent="Terrain/Trees" instance=ExtResource("5_37mf3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.6922, -0.392783, 9.00398)
+
+[node name="tree_16" parent="Terrain/Trees" instance=ExtResource("5_37mf3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.7757, -0.392779, -1.54313)
+
+[node name="tree_17" parent="Terrain/Trees" instance=ExtResource("5_37mf3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.91463, -0.392783, -9.98224)
+
+[node name="tree_18" parent="Terrain/Trees" instance=ExtResource("5_37mf3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.68294, -0.392787, -19.6527)
