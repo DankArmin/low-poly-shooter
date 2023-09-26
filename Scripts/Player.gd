@@ -132,6 +132,8 @@ func _handle_arm_idle_walk():
 	var current_blend = arms_animation_tree.get("parameters/IdleToWalk/blend_position")
 	if velocity.y == 0 && velocity.x == 0:
 		arms_animation_tree.set("parameters/IdleToWalk/blend_position", lerp(float(current_blend), 0.0, 0.2))
+	elif speed >= SPRINT_SPEED:
+		arms_animation_tree.set("parameters/IdleToWalk/blend_position", 2.0)
 	else:
 		arms_animation_tree.set("parameters/IdleToWalk/blend_position", lerp(float(current_blend), 1.0, 0.2))
 		
