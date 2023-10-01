@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dndcdt5pk4hld"]
+
+[ext_resource type="PackedScene" uid="uid://ca0m553p7inou" path="res://Models/Rocks/Rock_Arc.glb" id="1_6a1v4"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_det36"]
+height = 5.26272
+radius = 1.41544
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fbuug"]
+size = Vector3(1.78488, 1.19348, 3)
+
+[node name="Rock_Arc" instance=ExtResource("1_6a1v4")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Arc_Broken" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Arc_Broken/StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17241, 1.77548, 0)
+shape = SubResource("CylinderShape3D_det36")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Arc_Broken/StaticBody3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.96602, 1.77548, 0)
+shape = SubResource("CylinderShape3D_det36")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Arc_Broken/StaticBody3D" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.45344, -0.412515, -3.08565)
+shape = SubResource("BoxShape3D_fbuug")

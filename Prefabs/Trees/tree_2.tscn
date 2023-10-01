@@ -2,12 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://is0ajrc7ffie" path="res://Models/Trees/tree_2.glb" id="1_4b1x8"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_57lg8"]
-points = PackedVector3Array(-3.45676, 2.07446, -1.22965, -3.45676, 2.07446, -0.575137, 3.52285, 2.07309, -1.22896, 2.21383, 2.50898, 2.91398, -1.27529, 10.3604, 1.60497, -0.184895, 2.51034, -3.62906, 0.250305, 13.6315, -0.357195, -2.36568, 2.07446, 2.69536, 1.12276, -0.10769, -0.357195, -1.92911, 10.1417, -0.793079, 1.3407, 10.1417, 1.60497, 1.81568, 4.69273, -2.51631, -0.620779, -0.10769, 0.950456, -0.161302, 4.7334, 2.97276, 2.21383, 8.61408, 0.950456, 1.77795, 10.359, -0.793079, -1.05735, -0.10769, -0.575137, -2.83261, 4.62116, 1.08806, -0.159553, 10.1466, -1.68126, -1.74837, 4.6947, -2.51551, 0.250305, 2.07446, -3.62906, 2.43177, 2.07309, 2.47742, 2.83653, 4.66872, 1.06143, -2.14706, 2.72897, 2.91398, -0.167594, 13.0949, 0.2614, 0.686872, -0.10769, 0.950456, -0.620779, 2.07446, -3.41043, 0.46893, -0.10769, -1.0117, 1.22774, 8.66327, -1.73343, 3.52285, 2.07309, -0.793079, -1.92911, 10.1417, -0.357195, 0.250305, 2.51034, -3.62906)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_wpqvy"]
+height = 14.0
+radius = 3.35632
 
 [node name="tree_2" instance=ExtResource("1_4b1x8")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Tree_2" index="0"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Tree_2/StaticBody3D" index="0"]
-shape = SubResource("ConvexPolygonShape3D_57lg8")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.37735, 0)
+shape = SubResource("CylinderShape3D_wpqvy")

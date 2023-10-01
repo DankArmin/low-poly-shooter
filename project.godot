@@ -75,6 +75,7 @@ Attack2={
 
 3d_physics/layer_2="Interactable"
 3d_physics/layer_3="hitboxes"
+3d_physics/layer_4="grass"
 
 [rendering]
 

@@ -1,6 +1,7 @@
-[gd_scene load_steps=31 format=3 uid="uid://c6aqredf4dbx2"]
+[gd_scene load_steps=32 format=3 uid="uid://c6aqredf4dbx2"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_mn3nj"]
+[ext_resource type="Script" path="res://Prefabs/WeaponHolder.gd" id="2_3edoh"]
 [ext_resource type="PackedScene" uid="uid://d22pde0hs548l" path="res://Prefabs/Arms/arms.tscn" id="2_s75gf"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d7w0f"]
@@ -753,7 +754,7 @@ bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 0.424582, -1.38346e-07)
+bones/0/position = Vector3(0, 0.403143, -1.31361e-07)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Thigh.L"
@@ -761,28 +762,28 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 2.38419e-07, -1.64038e-08, 0.99763, 0.0688024, -2.37854e-07, -0.0688024, 0.99763, 0.5, 2, -3.25841e-07)
 bones/1/enabled = true
 bones/1/position = Vector3(0.5, 2, -3.25841e-07)
-bones/1/rotation = Quaternion(-0.191928, -0.0609778, -0.011949, 0.97944)
+bones/1/rotation = Quaternion(-0.187175, -0.061035, -0.0116531, 0.980359)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Shin.L"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, -3.33084e-08, 2.33815e-09, 3.33084e-08, 0.990193, -0.139706, 2.33814e-09, 0.139706, 0.990193, 1.33985e-08, 2.90689, 1.49012e-08)
 bones/2/enabled = true
 bones/2/position = Vector3(1.33985e-08, 2.90689, 1.49012e-08)
-bones/2/rotation = Quaternion(0.384139, 2.19968e-10, 9.15566e-08, 0.923275)
+bones/2/rotation = Quaternion(0.374977, -4.95868e-10, 8.83316e-08, 0.927034)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Thigh.R"
 bones/3/parent = 0
 bones/3/rest = Transform3D(1, 0, -2.38419e-07, 1.64038e-08, 0.99763, 0.0688024, 2.37854e-07, -0.0688024, 0.99763, -0.5, 2, -3.25841e-07)
 bones/3/enabled = true
 bones/3/position = Vector3(-0.5, 2, -3.25841e-07)
-bones/3/rotation = Quaternion(-0.191928, 0.0609778, 0.011949, 0.97944)
+bones/3/rotation = Quaternion(-0.187175, 0.061035, 0.0116531, 0.980359)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Shin.R"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 3.33084e-08, -2.33815e-09, -3.33084e-08, 0.990193, -0.139706, -2.33814e-09, 0.139706, 0.990193, -1.33985e-08, 2.90689, 1.49012e-08)
 bones/4/enabled = true
 bones/4/position = Vector3(-1.33985e-08, 2.90689, 1.49012e-08)
-bones/4/rotation = Quaternion(0.384139, 6.99789e-10, -9.19895e-08, 0.923275)
+bones/4/rotation = Quaternion(0.374977, -1.06025e-09, -8.81822e-08, 0.927034)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "HeelIK.L"
 bones/5/parent = -1
@@ -859,6 +860,9 @@ process_material = SubResource("ParticleProcessMaterial_ds1dc")
 draw_pass_1 = SubResource("RibbonTrailMesh_snsu0")
 
 [node name="WeaponHolder" type="Node3D" parent="FPSHolder/Camera3D"]
+script = ExtResource("2_3edoh")
+sway_left = Vector3(0, -0.2, 0)
+sway_right = Vector3(0, 0.2, 0)
 
 [node name="SK_Arms" parent="FPSHolder/Camera3D/WeaponHolder" instance=ExtResource("2_s75gf")]
 

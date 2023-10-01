@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cc0spndybrjyf"]
+[gd_scene load_steps=20 format=3 uid="uid://cc0spndybrjyf"]
 
 [ext_resource type="PackedScene" uid="uid://c6aqredf4dbx2" path="res://Prefabs/Player.tscn" id="1_edj5f"]
 [ext_resource type="Material" uid="uid://c5gg1icrfoc0x" path="res://Materials/foliage.tres" id="2_4rohe"]
@@ -6,12 +6,14 @@
 [ext_resource type="PackedScene" uid="uid://d0rt7c2apkwqu" path="res://Prefabs/Trees/tree_2.tscn" id="4_7rx6r"]
 [ext_resource type="PackedScene" uid="uid://b0rapafededys" path="res://Prefabs/Trees/tree_3.tscn" id="5_37mf3"]
 [ext_resource type="Material" uid="uid://egpru16uvbme" path="res://Models/Grass/Stylized3DGrass.tres" id="7_gfv5g"]
+[ext_resource type="PackedScene" uid="uid://dndcdt5pk4hld" path="res://Prefabs/Rocks/rock_arc.tscn" id="7_ot1fc"]
+[ext_resource type="PackedScene" uid="uid://bde6i0no1jt7m" path="res://Prefabs/Rocks/rock_bed.tscn" id="8_8ff58"]
 
 [sub_resource type="Gradient" id="Gradient_o5ymt"]
 offsets = PackedFloat32Array(0, 0.237037, 0.8, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0.1872, 0.22176, 0.36, 1, 0.830971, 0.811491, 0.601168, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ariuk"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yid37"]
 gradient = SubResource("Gradient_o5ymt")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ruy2a"]
@@ -21,12 +23,12 @@ sky_curve = 0.0803832
 ground_bottom_color = Color(0.313726, 0.552941, 0.745098, 1)
 ground_horizon_color = Color(0.435294, 0.701961, 0.772549, 1)
 
-[sub_resource type="Sky" id="Sky_nkwi2"]
+[sub_resource type="Sky" id="Sky_k8uq4"]
 sky_material = SubResource("ProceduralSkyMaterial_ruy2a")
 
 [sub_resource type="Environment" id="Environment_7l4n4"]
 background_mode = 2
-sky = SubResource("Sky_nkwi2")
+sky = SubResource("Sky_k8uq4")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 0, 0)
 ambient_light_sky_contribution = 0.33
@@ -61,7 +63,7 @@ volumetric_fog_length = 0.0
 volumetric_fog_sky_affect = 0.045
 adjustment_enabled = true
 adjustment_contrast = 0.9
-adjustment_color_correction = SubResource("GradientTexture1D_ariuk")
+adjustment_color_correction = SubResource("GradientTexture1D_yid37")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_diyf5"]
 albedo_color = Color(0.384314, 0.529412, 0.301961, 1)
@@ -193,3 +195,9 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 material_override = ExtResource("7_gfv5g")
 cast_shadow = 0
 multimesh = SubResource("MultiMesh_i7e42")
+
+[node name="Rock_Arc" parent="." instance=ExtResource("7_ot1fc")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, -0.275298, -0.392783, -9.56127)
+
+[node name="Rock_Bed" parent="." instance=ExtResource("8_8ff58")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0.184342, 0.0112786, -5.24854)

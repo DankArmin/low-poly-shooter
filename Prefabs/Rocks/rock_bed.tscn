@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bde6i0no1jt7m"]
+
+[ext_resource type="PackedScene" uid="uid://detkyd47ldnn5" path="res://Models/Rocks/Rock_Bed.glb" id="1_6xv7f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g8uei"]
+size = Vector3(2.105, 2.075, 2.01)
+
+[node name="Rock_Bed" instance=ExtResource("1_6xv7f")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Bed" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bed/StaticBody3D" index="0"]
+shape = SubResource("BoxShape3D_g8uei")
