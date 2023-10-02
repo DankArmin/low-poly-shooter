@@ -7,6 +7,7 @@ const SPRINT_SPEED = 8.0
 const SONIC_SPEED = 11.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.01
+const LEG_ROTATION_SPEED = 0.1
 
 const HEAD_BOB_FREQUENCY = 2.0
 const HEAD_BOB_AMPLITUDE = 0.08
@@ -98,7 +99,7 @@ func _physics_process(delta):
 	
 	_handle_directional_walk_animation(delta)
 	
-	_handle_leg_rotation(delta)
+	_handle_leg_rotation(input_dir)
 	
 	_handle_arm_idle_walk()
 	
@@ -110,8 +111,14 @@ func _headbob(time) -> Vector3:
 	pos.x = cos(time * HEAD_BOB_FREQUENCY / 2.0) * HEAD_BOB_AMPLITUDE
 	return pos
 
-func _handle_leg_rotation(delta):
-	# YET TO BE IMPLEMENTED
+func _handle_leg_rotation(input_dir):
+	var leg_rotation = sk_legs.get_rotation
+	if input_dir.x > 0:
+		sk_legs.rotation.y = lerp_angle(sk_legs.rotation.y, -180, LEG_ROTATION_SPEED)
+	elif input_dir.x < 0:
+		sk_legs.rotation.y = lerp_angle(sk_legs.rotation.y, -90, LEG_ROTATION_SPEED)
+	else:
+		sk_legs.rotation.y = lerp_angle(sk_legs.rotation.y, -135, LEG_ROTATION_SPEED)
 	return
 
 func _handle_directional_walk_animation(delta):
