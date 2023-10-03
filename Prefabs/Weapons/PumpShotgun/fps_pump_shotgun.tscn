@@ -1,8 +1,9 @@
-[gd_scene load_steps=33 format=3 uid="uid://2y0oqr0btuj6"]
+[gd_scene load_steps=37 format=3 uid="uid://2y0oqr0btuj6"]
 
 [ext_resource type="Animation" uid="uid://bt02756hlca8h" path="res://Animations/Weapons/Shotgun/draw.res" id="1_0bkye"]
 [ext_resource type="Script" path="res://Scripts/fps_pump_shotgun.gd" id="1_dfmog"]
 [ext_resource type="AnimationLibrary" uid="uid://dalt55rmmnl6u" path="res://Animations/Weapons/Shotgun/pumpshotgun.res" id="2_ksjk0"]
+[ext_resource type="Texture2D" uid="uid://cnu74topc0g5r" path="res://Materials/MuzzleFlash.png" id="2_qctda"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gft3q"]
 resource_name = "Glove"
@@ -288,6 +289,20 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7runh"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(1, 0.705882, 0, 1)
+albedo_texture = ExtResource("2_qctda")
+emission_enabled = true
+emission = Color(1, 0.494118, 0, 1)
+emission_energy_multiplier = 3.0
+emission_texture = ExtResource("2_qctda")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4idsm"]
+material = SubResource("StandardMaterial3D_7runh")
+orientation = 0
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_rftix"]
 resource_name = "SK_Shotgun_Draw_Cube_006"
 _surfaces = [{
@@ -306,9 +321,49 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
+[sub_resource type="Animation" id="Animation_xgutv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Gun/Skeleton3D/Receiver/MuzzleFlash:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5148, 3.43199, 1.63603)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Gun/Skeleton3D/Receiver/MuzzleFlash:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Gun/Skeleton3D/Receiver/MuzzleFlash:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.175318, -1.3905e-08, -4.41879e-09)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lsjm6"]
 _data = {
-"Draw": ExtResource("1_0bkye")
+"Draw": ExtResource("1_0bkye"),
+"RESET": SubResource("Animation_xgutv")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5omxi"]
@@ -408,21 +463,21 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(0.776239, -0.0667689, -0.626894, -0.00151679, -0.994571, 0.104051, -0.630438, -0.0798176, -0.772126, 0.832599, -0.765504, 0.422803)
 bones/1/enabled = true
 bones/1/position = Vector3(0.832599, -0.765504, 0.422803)
-bones/1/rotation = Quaternion(0.831197, -0.207451, 0.118738, 0.501974)
+bones/1/rotation = Quaternion(0.834715, -0.206428, 0.119897, 0.496249)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Arm_1.L"
 bones/2/parent = 1
 bones/2/rest = Transform3D(0.999969, 0.00634649, 0.00455966, -0.0063465, 0.319089, 0.947703, 0.00455965, -0.947703, 0.31912, -1.11759e-08, 1.96764, -1.49012e-08)
 bones/2/enabled = true
 bones/2/position = Vector3(-1.11759e-08, 1.96764, -1.49012e-08)
-bones/2/rotation = Quaternion(-0.458117, -7.68341e-09, -0.00306787, 0.888886)
+bones/2/rotation = Quaternion(-0.463066, 1.80444e-09, -0.00310102, 0.886318)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Hand.L"
 bones/3/parent = 2
 bones/3/rest = Transform3D(-0.184435, -0.692148, -0.697793, 0.100399, -0.719526, 0.687169, -0.977703, 0.0566803, 0.202197, -4.47035e-08, 2, -5.96046e-08)
 bones/3/enabled = true
 bones/3/position = Vector3(-4.47035e-08, 2, -5.96046e-08)
-bones/3/rotation = Quaternion(-0.157279, 0.552214, 0.622031, 0.532354)
+bones/3/rotation = Quaternion(-0.153001, 0.546509, 0.623902, 0.537276)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Pinky_0.L"
 bones/4/parent = 3
@@ -534,21 +589,21 @@ bones/19/parent = 0
 bones/19/rest = Transform3D(0.8082, -0.562379, -0.174764, -0.582009, -0.808043, -0.0912849, -0.0898802, 0.175491, -0.98037, -0.623347, -0.826235, -1.03706)
 bones/19/enabled = true
 bones/19/position = Vector3(-0.623347, -0.826235, -1.03706)
-bones/19/rotation = Quaternion(0.906991, -0.352584, 0.0758659, 0.217478)
+bones/19/rotation = Quaternion(0.903931, -0.354873, 0.0792995, 0.225137)
 bones/19/scale = Vector3(1, 1, 1)
 bones/20/name = "Arm_1.R"
 bones/20/parent = 19
 bones/20/rest = Transform3D(0.999943, -0.00645185, -0.00849034, 0.00645177, -0.267895, 0.963426, -0.0084904, -0.963427, -0.267838, -1.45286e-07, 1.96764, 1.19209e-07)
 bones/20/enabled = true
 bones/20/position = Vector3(-1.45286e-07, 1.96764, 1.19209e-07)
-bones/20/rotation = Quaternion(-0.899782, -9.77889e-09, 0.0060256, 0.436298)
+bones/20/rotation = Quaternion(-0.900008, -8.49832e-09, 0.0060271, 0.435832)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/name = "Hand.R"
 bones/21/parent = 20
 bones/21/rest = Transform3D(-0.24896, 0.945564, 0.209592, 0.489612, -0.0638425, 0.8696, 0.835643, 0.319115, -0.447065, 8.9407e-08, 2, -5.96046e-08)
 bones/21/enabled = true
 bones/21/position = Vector3(8.9407e-08, 2, -5.96046e-08)
-bones/21/rotation = Quaternion(0.0388711, 0.65737, 0.660367, -0.360928)
+bones/21/rotation = Quaternion(0.0452962, 0.643276, 0.672515, -0.363136)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "Pinky_0.R"
 bones/22/parent = 21
@@ -675,8 +730,8 @@ bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0.466395, 0.884564, -0.00470936, -0.642942, 0.335331, -0.688607, -0.607537, 0.324191, 0.72512, -0.97418, -3.14786, 1.78639)
 bones/0/enabled = true
-bones/0/position = Vector3(-1.49688, -2.36557, -0.28477)
-bones/0/rotation = Quaternion(-0.0200593, 0, 0, 0.999799)
+bones/0/position = Vector3(-1.49688, -2.36557, -0.321322)
+bones/0/rotation = Quaternion(-0.00999315, -1.49012e-08, -2.23518e-08, 0.99995)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Pump"
 bones/1/parent = 0
@@ -711,6 +766,17 @@ skin = SubResource("Skin_opx5x")
 [node name="Receiver" type="MeshInstance3D" parent="SKPumpShotgun/Gun/Skeleton3D"]
 mesh = SubResource("ArrayMesh_pceyx")
 skin = SubResource("Skin_opx5x")
+
+[node name="MuzzleFlash" type="MeshInstance3D" parent="SKPumpShotgun/Gun/Skeleton3D/Receiver"]
+transform = Transform3D(2, 1.36882e-08, -2.73838e-08, -8.7021e-09, 1.96934, 0.348843, 2.93515e-08, -0.348843, 1.96934, -1.5148, 3.43199, 1.63603)
+visible = false
+mesh = SubResource("PlaneMesh_4idsm")
+skeleton = NodePath("../..")
+
+[node name="MuzzleFlash" type="MeshInstance3D" parent="SKPumpShotgun/Gun/Skeleton3D/Receiver/MuzzleFlash"]
+transform = Transform3D(-4.37114e-08, -0.173648, 0.984808, 0, 0.984808, 0.173648, -1, 7.5904e-09, -4.30473e-08, 0, 0, 0)
+mesh = SubResource("PlaneMesh_4idsm")
+skeleton = NodePath("../..")
 
 [node name="SideLatch" type="MeshInstance3D" parent="SKPumpShotgun/Gun/Skeleton3D"]
 mesh = SubResource("ArrayMesh_rftix")

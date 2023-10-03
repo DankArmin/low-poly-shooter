@@ -2,12 +2,9 @@ extends Weapon
 
 class_name PumpShotgun
 
-func _process(delta):
-	print(animation_state_machine.get_current_node())
-	
+func _process(delta):	
 	if Input.is_action_just_pressed("Attack1"):
 		_shoot()
-	print(str(current_magazine) + "/" + str(magazine_size))
 	
 	if Input.is_action_just_pressed("Reload"):
 		_reload()
