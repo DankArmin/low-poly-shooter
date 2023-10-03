@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_mn3nj"]
 [ext_resource type="Script" path="res://Prefabs/WeaponHolder.gd" id="2_3edoh"]
 [ext_resource type="PackedScene" uid="uid://d22pde0hs548l" path="res://Prefabs/Arms/arms.tscn" id="2_s75gf"]
-[ext_resource type="PackedScene" uid="uid://bb5pt1u03w1p6" path="res://Prefabs/Weapons/PipePistol/Arms_Pipe_Pistol.tscn" id="4_gm7nf"]
+[ext_resource type="PackedScene" uid="uid://2y0oqr0btuj6" path="res://Prefabs/Weapons/PumpShotgun/fps_pump_shotgun.tscn" id="5_dclpi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d7w0f"]
 resource_name = "Material"
@@ -755,7 +755,7 @@ bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 0.259215, -8.44631e-08)
+bones/0/position = Vector3(0, 0.510786, -1.66435e-07)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Thigh.L"
@@ -763,28 +763,28 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 2.38419e-07, -1.64038e-08, 0.99763, 0.0688024, -2.37854e-07, -0.0688024, 0.99763, 0.5, 2, -3.25841e-07)
 bones/1/enabled = true
 bones/1/position = Vector3(0.5, 2, -3.25841e-07)
-bones/1/rotation = Quaternion(-0.151501, -0.0614174, -0.00943215, 0.986502)
+bones/1/rotation = Quaternion(-0.209941, -0.0607473, -0.0130705, 0.975738)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Shin.L"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, -3.33084e-08, 2.33815e-09, 3.33084e-08, 0.990193, -0.139706, 2.33814e-09, 0.139706, 0.990193, 1.33985e-08, 2.90689, 1.49012e-08)
 bones/2/enabled = true
 bones/2/position = Vector3(1.33985e-08, 2.90689, 1.49012e-08)
-bones/2/rotation = Quaternion(0.305409, 1.32338e-09, 7.04466e-08, 0.952221)
+bones/2/rotation = Quaternion(0.418606, 3.84753e-09, 9.95088e-08, 0.908168)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Thigh.R"
 bones/3/parent = 0
 bones/3/rest = Transform3D(1, 0, -2.38419e-07, 1.64038e-08, 0.99763, 0.0688024, 2.37854e-07, -0.0688024, 0.99763, -0.5, 2, -3.25841e-07)
 bones/3/enabled = true
 bones/3/position = Vector3(-0.5, 2, -3.25841e-07)
-bones/3/rotation = Quaternion(-0.151501, 0.0614175, 0.00943215, 0.986502)
+bones/3/rotation = Quaternion(-0.209941, 0.0607473, 0.0130705, 0.975738)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Shin.R"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 3.33084e-08, -2.33815e-09, -3.33084e-08, 0.990193, -0.139706, -2.33814e-09, 0.139706, 0.990193, -1.33985e-08, 2.90689, 1.49012e-08)
 bones/4/enabled = true
 bones/4/position = Vector3(-1.33985e-08, 2.90689, 1.49012e-08)
-bones/4/rotation = Quaternion(0.305409, 1.19936e-09, -7.1111e-08, 0.952221)
+bones/4/rotation = Quaternion(0.418606, -1.33996e-10, -9.96732e-08, 0.908168)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "HeelIK.L"
 bones/5/parent = -1
@@ -868,8 +868,9 @@ sway_right = Vector3(0, 0.2, 0)
 [node name="SK_Arms" parent="FPSHolder/Camera3D/WeaponHolder" instance=ExtResource("2_s75gf")]
 visible = false
 
-[node name="Arms_Pipe_Pistol" parent="FPSHolder/Camera3D/WeaponHolder" instance=ExtResource("4_gm7nf")]
-transform = Transform3D(-0.3, 0, -2.62268e-08, 0, 0.3, 0, 2.62268e-08, 0, -0.3, 0, -0.113968, 0.0723215)
+[node name="FPSPumpShotgun" parent="FPSHolder/Camera3D/WeaponHolder" node_paths=PackedStringArray("player_reference") instance=ExtResource("5_dclpi")]
+player_reference = NodePath("../../../..")
+current_magazine = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1.1, 0, 0, 0, 1.35, 0, 0, 0, 1.1, 0, -1.2, 0)
