@@ -24,6 +24,8 @@ func _shoot():
 		_reload()
 		return  
 	
+	on_shoot.emit()
+	
 	animation_tree.set("parameters/conditions/fire", true)
 	var timer = Timer.new()
 	timer.set_wait_time(.1)

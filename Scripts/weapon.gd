@@ -4,7 +4,6 @@ class_name Weapon
 
 @export var player_reference: Player
 
-@export var damage: int
 @export var magazine_size: int
 
 @export var current_magazine: int
@@ -14,6 +13,8 @@ class_name Weapon
 
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
+
+signal on_shoot
 
 func _shoot() -> void:
 	pass
