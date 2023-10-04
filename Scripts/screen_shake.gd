@@ -1,5 +1,7 @@
 extends Camera3D
 
+class_name ScreenShake
+
 var normal_position : Vector3
 @export var screen_shake_duration : float = 1.0
 var screen_shake_timer : float = 0.0
@@ -13,18 +15,12 @@ func _ready():
 
 
 func _process(delta):
-	if Input.is_action_just_pressed("Attack1"):
-		_start_screen_shake()
 	if is_shaking:
 		_handle_screen_shake(delta)
-	if screen_shake_timer > screen_shake_duration:
+	if screen_shake_timer >= screen_shake_duration:
 		_end_screen_shake()
 		screen_shake_timer = 0
 		reverting = true
-	if reverting: 
-		position = lerp(position, normal_position, .1)
-		if position == normal_position:
-			reverting = false
 
 
 func _start_screen_shake():
