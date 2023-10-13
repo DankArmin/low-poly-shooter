@@ -24,22 +24,26 @@ var sonic_timer = 0.0
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
+
+@onready var vcam = $FPSHolder/CameraHolder/ShakeableCamera/Camera3D
 @onready var fps_holder = $FPSHolder
-@onready var cam = $FPSHolder/Camera3D
+@onready var cam = $FPSHolder/CameraHolder
 @onready var animTree = $FPSHolder/SK_Legs/AnimationTree
 @onready var animPlayer = $FPSHolder/SK_Legs/AnimationPlayer
 @onready var sk_legs = $FPSHolder/SK_Legs
-@onready var speed_lines = $FPSHolder/Camera3D/SpeedLines
-@onready var arms_animation_player = $FPSHolder/Camera3D/WeaponHolder/SK_Arms/ArmsAnimationPlayer
-@onready var arms_animation_tree = $FPSHolder/Camera3D/WeaponHolder/SK_Arms/AnimationTree
-@onready var sk_arms = $FPSHolder/Camera3D/WeaponHolder/SK_Arms
-@onready var arms_state_machine = arms_animation_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
+@onready var speed_lines = $FPSHolder/CameraHolder/ShakeableCamera/Camera3D/SpeedLines
+@onready var arms_animation_player = $FPSHolder/CameraHolder/ShakeableCamera/Camera3D/WeaponHolder/SK_Arms/ArmsAnimationPlayer
+@onready var arms_animation_tree = $FPSHolder/CameraHolder/ShakeableCamera/Camera3D/WeaponHolder/SK_Arms/AnimationTree
+@onready var sk_arms = $FPSHolder/CameraHolder/ShakeableCamera/Camera3D/WeaponHolder/SK_Arms
+@onready var arms_state_machine
 
 const BASE_LEGS_ROTATION = -135.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	speed_lines.hide()
+	if sk_arms:
+		arms_state_machine = arms_animation_tree.get("parameters/playback") as AnimationNodeStateMachinePlayback
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -94,7 +98,7 @@ func _physics_process(delta):
 	
 	var velocity_clamped = clamp(velocity.length(), 1, SONIC_SPEED * 2.0)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
-	cam.fov = lerp(cam.fov, target_fov, delta * 8.0)
+	vcam.fov = lerp(vcam.fov, target_fov, delta * 8.0)
 	
 	animTree.set("parameters/conditions/jump", !is_on_floor())
 	animTree.set("parameters/conditions/land", is_on_floor())
@@ -103,7 +107,8 @@ func _physics_process(delta):
 	
 	_handle_leg_rotation(input_dir)
 	
-	_handle_arm_idle_walk()
+	if sk_arms:
+		_handle_arm_idle_walk()
 	
 	move_and_slide()
 
@@ -160,6 +165,7 @@ func _handle_punch():
 	arms_animation_tree.set("parameters/conditions/punch", false)
 	
 func _handle_punch_input():
+	if !sk_arms: return
 	if arms_state_machine.get_current_node() == "PunchSpeedBlend":
 		return
 	if Input.is_action_just_pressed("Attack1"):

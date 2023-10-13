@@ -1,8 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://c6aqredf4dbx2"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_mn3nj"]
-[ext_resource type="Script" path="res://Scripts/screen_shake.gd" id="2_qaao8"]
-[ext_resource type="PackedScene" uid="uid://d22pde0hs548l" path="res://Prefabs/Arms/arms.tscn" id="2_s75gf"]
+[ext_resource type="Script" path="res://Prefabs/shakeable_camera.gd" id="2_syacf"]
 [ext_resource type="Script" path="res://Scripts/WeaponHolder.gd" id="3_pg1f8"]
 [ext_resource type="PackedScene" uid="uid://2y0oqr0btuj6" path="res://Prefabs/Weapons/PumpShotgun/fps_pump_shotgun.tscn" id="5_dclpi"]
 
@@ -697,6 +696,10 @@ states/SpeedBlend/node = SubResource("AnimationNodeBlendTree_vrv6u")
 states/SpeedBlend/position = Vector2(409, 100)
 transitions = ["Start", "SpeedBlend", SubResource("AnimationNodeStateMachineTransition_f5ild"), "SpeedBlend", "Jump", SubResource("AnimationNodeStateMachineTransition_4s4k8"), "Jump", "SpeedBlend", SubResource("AnimationNodeStateMachineTransition_827v1")]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_0iqk5"]
+frequency = 0.8
+fractal_octaves = 4
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ds1dc"]
 emission_shape = 6
 emission_ring_axis = Vector3(0, 1, 0)
@@ -739,11 +742,10 @@ curve = SubResource("Curve_e2m30")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pq6w0"]
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_mn3nj")
 
 [node name="FPSHolder" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0694799, -0.304952)
 
 [node name="SK_Legs" type="Node3D" parent="FPSHolder"]
 transform = Transform3D(-0.25, 0, -2.18557e-08, 0, 0.25, 0, 2.18557e-08, 0, -0.25, 0, -0.65, 0.3)
@@ -756,7 +758,7 @@ bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 0.393544, -1.28233e-07)
+bones/0/position = Vector3(0, 0.392174, -1.27786e-07)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Thigh.L"
@@ -764,28 +766,28 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 2.38419e-07, -1.64038e-08, 0.99763, 0.0688024, -2.37854e-07, -0.0688024, 0.99763, 0.5, 2, -3.25841e-07)
 bones/1/enabled = true
 bones/1/position = Vector3(0.5, 2, -3.25841e-07)
-bones/1/rotation = Quaternion(-0.185008, -0.0610605, -0.0115182, 0.980771)
+bones/1/rotation = Quaternion(-0.184698, -0.0610642, -0.0114989, 0.980829)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Shin.L"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, -3.33084e-08, 2.33815e-09, 3.33084e-08, 0.990193, -0.139706, 2.33814e-09, 0.139706, 0.990193, 1.33985e-08, 2.90689, 1.49012e-08)
 bones/2/enabled = true
 bones/2/position = Vector3(1.33985e-08, 2.90689, 1.49012e-08)
-bones/2/rotation = Quaternion(0.370791, -1.43304e-09, 8.73221e-08, 0.928716)
+bones/2/rotation = Quaternion(0.370193, -1.56675e-09, 8.71779e-08, 0.928955)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Thigh.R"
 bones/3/parent = 0
 bones/3/rest = Transform3D(1, 0, -2.38419e-07, 1.64038e-08, 0.99763, 0.0688024, 2.37854e-07, -0.0688024, 0.99763, -0.5, 2, -3.25841e-07)
 bones/3/enabled = true
 bones/3/position = Vector3(-0.5, 2, -3.25841e-07)
-bones/3/rotation = Quaternion(-0.185008, 0.0610606, 0.0115182, 0.980771)
+bones/3/rotation = Quaternion(-0.184698, 0.0610642, 0.0114989, 0.980829)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Shin.R"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 3.33084e-08, -2.33815e-09, -3.33084e-08, 0.990193, -0.139706, -2.33814e-09, 0.139706, 0.990193, -1.33985e-08, 2.90689, 1.49012e-08)
 bones/4/enabled = true
 bones/4/position = Vector3(-1.33985e-08, 2.90689, 1.49012e-08)
-bones/4/rotation = Quaternion(0.370791, -1.27464e-09, -8.69256e-08, 0.928716)
+bones/4/rotation = Quaternion(0.370193, -1.30523e-09, -8.67461e-08, 0.928955)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "HeelIK.L"
 bones/5/parent = -1
@@ -848,14 +850,17 @@ parameters/conditions/land = false
 parameters/SpeedBlend/SpeedBlend1D/blend_position = 0
 parameters/SpeedBlend/TimeScale/scale = 1.0
 
-[node name="Camera3D" type="Camera3D" parent="FPSHolder"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.442893, 0.267538)
-current = true
-script = ExtResource("2_qaao8")
-screen_shake_duration = 0.2
-intensity = Vector3(5, 5, 0)
+[node name="CameraHolder" type="Node3D" parent="FPSHolder"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0127712, 0.251448)
 
-[node name="SpeedLines" type="GPUParticles3D" parent="FPSHolder/Camera3D"]
+[node name="ShakeableCamera" type="Area3D" parent="FPSHolder/CameraHolder"]
+script = ExtResource("2_syacf")
+noise = SubResource("FastNoiseLite_0iqk5")
+
+[node name="Camera3D" type="Camera3D" parent="FPSHolder/CameraHolder/ShakeableCamera"]
+current = true
+
+[node name="SpeedLines" type="GPUParticles3D" parent="FPSHolder/CameraHolder/ShakeableCamera/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.5)
 visible = false
 amount = 25
@@ -864,21 +869,16 @@ trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_ds1dc")
 draw_pass_1 = SubResource("RibbonTrailMesh_snsu0")
 
-[node name="WeaponHolder" type="Node3D" parent="FPSHolder/Camera3D"]
+[node name="WeaponHolder" type="Node3D" parent="FPSHolder/CameraHolder/ShakeableCamera/Camera3D"]
 script = ExtResource("3_pg1f8")
 sway_left = Vector3(0, -0.15, 0)
 sway_right = Vector3(0, 0.15, 0)
 
-[node name="SK_Arms" parent="FPSHolder/Camera3D/WeaponHolder" instance=ExtResource("2_s75gf")]
-visible = false
-
-[node name="FPSPumpShotgun" parent="FPSHolder/Camera3D/WeaponHolder" node_paths=PackedStringArray("player_reference") instance=ExtResource("5_dclpi")]
-player_reference = NodePath("../../../..")
+[node name="FPSPumpShotgun" parent="FPSHolder/CameraHolder/ShakeableCamera/Camera3D/WeaponHolder" node_paths=PackedStringArray("player_reference") instance=ExtResource("5_dclpi")]
+player_reference = NodePath("../../../../../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1.1, 0, 0, 0, 1.35, 0, 0, 0, 1.1, 0, -1.2, 0)
+transform = Transform3D(0.75, 0, 0, 0, 1.35, 0, 0, 0, 0.75, 0, -1.2, 0.296701)
 shape = SubResource("CapsuleShape3D_pq6w0")
 
-[connection signal="on_shoot" from="FPSHolder/Camera3D/WeaponHolder/FPSPumpShotgun" to="FPSHolder/Camera3D" method="_set_and_execute" flags=3 binds= [Vector3(5, 5, 0), 0.2]]
-
-[editable path="FPSHolder/Camera3D/WeaponHolder/SK_Arms"]
+[connection signal="on_shoot" from="FPSHolder/CameraHolder/ShakeableCamera/Camera3D/WeaponHolder/FPSPumpShotgun" to="FPSHolder/CameraHolder/ShakeableCamera" method="add_trauma" binds= [0.75]]
