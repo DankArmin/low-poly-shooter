@@ -7,14 +7,14 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_jxtyc"]
 
-[node name="Dummy" type="Node3D"]
+[node name="Dummy" type="Node3D" groups=["Enemies"]]
 script = ExtResource("1_sbkt4")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." groups=["Enemies"]]
 mesh = SubResource("CapsuleMesh_sibc2")
 
-[node name="HurtBox" type="Area3D" parent="MeshInstance3D"]
+[node name="HurtBox" type="Area3D" parent="MeshInstance3D" groups=["Enemies"]]
 script = ExtResource("1_3nuuu")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/HurtBox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/HurtBox" groups=["Enemies"]]
 shape = SubResource("CapsuleShape3D_jxtyc")
