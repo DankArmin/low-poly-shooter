@@ -1,6 +1,6 @@
 extends Node3D
 
-const _SPEED : float = 40.0
+const _SPEED : float = 20.0
 @onready var gpu_particles_3d = $GPUParticles3D
 @onready var ray_cast_3d = $RayCast3D
 @onready var mesh_instance_3d = $MeshInstance3D
