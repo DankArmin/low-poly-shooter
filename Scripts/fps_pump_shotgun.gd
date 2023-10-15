@@ -38,6 +38,8 @@ func _shoot():
 	current_magazine -= 1
 
 func _reload():
+	if player_reference.speed >= SPRINT_SPEED:
+		return
 	if _check_if_states_are_playing():
 		return
 	if _check_for_fullMag():
