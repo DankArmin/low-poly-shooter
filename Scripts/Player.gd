@@ -150,7 +150,6 @@ func handle_leg_rotation(input_dir) -> void:
 		sk_legs.rotation.y = lerp_angle(sk_legs.rotation.y, -90, LEG_ROTATION_SPEED)
 	else:
 		sk_legs.rotation.y = lerp_angle(sk_legs.rotation.y, -135, LEG_ROTATION_SPEED)
-	return
 
 
 func handle_directional_walk_animation(delta) -> void:
@@ -163,7 +162,6 @@ func handle_directional_walk_animation(delta) -> void:
 		animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), 1.0, 0.2))
 	else:
 		animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), 0.0, 0.2))
-	return
 
 
 func handle_arm_idle_walk() -> void:
