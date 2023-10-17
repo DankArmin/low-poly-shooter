@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_mn3nj"]
 [ext_resource type="Script" path="res://Scripts/shakeable_camera.gd" id="2_adyn8"]
-[ext_resource type="Script" path="res://Scripts/WeaponHolder.gd" id="3_pg1f8"]
+[ext_resource type="Script" path="res://Scripts/weapon_holder.gd" id="3_pg1f8"]
 [ext_resource type="PackedScene" uid="uid://2y0oqr0btuj6" path="res://Prefabs/Weapons/PumpShotgun/fps_pump_shotgun.tscn" id="5_dclpi"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d7w0f"]
