@@ -5,11 +5,11 @@ extends WeaponShot
 var bullet = preload("res://Prefabs/Projectiles/Bullet.tscn")
 var instance;
 
-func _on_fps_pump_shotgun_on_shoot():
+func _on_fps_pump_shotgun_on_shoot() -> void:
 	_fire()
 
 
-func _fire():
+func _fire() -> void:
 	blast.rotation.y += 15.0
 	for ray in blast.get_children() as Array[RayCast3D]:
 			instance = bullet.instantiate()

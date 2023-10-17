@@ -8,6 +8,7 @@ var sway_lerp = 10
 @export var sway_right : Vector3
 @export var sway_normal : Vector3
 
+
 func _input(event):
 	if event is InputEventMouseMotion:
 		mouse_mov = -event.relative.x
@@ -21,7 +22,3 @@ func _process(delta):
 			rotation = rotation.lerp(sway_right, sway_lerp * delta)
 		else:
 			rotation = rotation.lerp(sway_normal, sway_lerp * delta)
-
-
-
-

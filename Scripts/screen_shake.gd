@@ -1,3 +1,4 @@
+#This script is deprecated => use shakeable_camera instead!
 extends Camera3D
 
 class_name ScreenShake
@@ -10,28 +11,29 @@ var reverting: bool
 
 @export var intensity: Vector3
 
-func _ready():
+
+func _ready() -> void:
 	normal_position = position
 
 
-func _process(delta):
+func _process(delta) -> void:
 	if is_shaking:
-		_handle_screen_shake(delta)
+		handle_screen_shake(delta)
 	if screen_shake_timer >= screen_shake_duration:
-		_end_screen_shake()
+		end_screen_shake()
 		screen_shake_timer = 0
 		reverting = true
 
 
-func _start_screen_shake():
+func start_screen_shake() -> void:
 	is_shaking = true
 
 
-func _end_screen_shake():
+func end_screen_shake() -> void:
 	is_shaking = false
 
 
-func _handle_screen_shake(delta):
+func handle_screen_shake(delta) -> void:
 	if screen_shake_timer < screen_shake_duration:
 		screen_shake_timer += delta
 		var timer = Timer.new()
@@ -41,9 +43,9 @@ func _handle_screen_shake(delta):
 		timer.start()
 		await get_tree().create_timer(0.00001).timeout
 		position += Vector3(randf_range(-.1, .1) * intensity.x, randf_range(-.1, .1) * intensity.y, randf_range(-.1, .1) * intensity.z)
-		
 
-func _set_and_execute(new_intensity: Vector3, new_duration: float):
+
+func set_and_execute(new_intensity: Vector3, new_duration: float) -> void:
 	intensity = new_intensity
 	screen_shake_duration = new_duration
-	_start_screen_shake()
+	start_screen_shake()

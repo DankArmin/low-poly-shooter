@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bxei062syxuyv"]
 
-[ext_resource type="Script" path="res://Scripts/HurtBox.gd" id="1_3nuuu"]
-[ext_resource type="Script" path="res://Prefabs/Enemies/EnemyStats.gd" id="1_sbkt4"]
+[ext_resource type="Script" path="res://Scripts/hurt_box.gd" id="1_3nuuu"]
+[ext_resource type="Script" path="res://Scripts/enemy_stats.gd" id="1_sbkt4"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sibc2"]
 

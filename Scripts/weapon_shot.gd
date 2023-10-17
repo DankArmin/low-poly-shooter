@@ -6,5 +6,6 @@ class_name WeaponShot
 
 @export var shoot_point: Node3D
 
-func _fire():
+
+func _fire() -> void:
 	print("Fired shot: " + str(damage))

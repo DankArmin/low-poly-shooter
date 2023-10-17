@@ -6,12 +6,6 @@ const _SPEED : float = 20.0
 @onready var mesh_instance_3d = $MeshInstance3D
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position += transform.basis * Vector3(0,0,-_SPEED) * delta
 	if ray_cast_3d.is_colliding() and not ray_cast_3d.get_collider().is_in_group("Bullets") and not ray_cast_3d.get_collider().is_in_group("Weapons") and not ray_cast_3d.get_collider().is_in_group("Player"):

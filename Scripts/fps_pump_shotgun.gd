@@ -2,13 +2,17 @@ extends Weapon
 
 class_name PumpShotgun
 
-func _process(delta):	
+
+func _process(delta) -> void:	
 	if Input.is_action_just_pressed("Attack1"):
-		_shoot()
+		shoot()
 	
 	if Input.is_action_just_pressed("Reload"):
-		_reload()
-		
+		reload()
+	handle_idle_to_sprint()
+
+
+func handle_idle_to_sprint() -> void:
 	var current_blend = animation_tree.get("parameters/IdleToWalkToSprint/blend_position")
 	if  (player_reference.speed >= SPRINT_SPEED) && (abs(player_reference.velocity.x) > 0 || abs(player_reference.velocity.y) > 0):
 		animation_tree.set("parameters/IdleToWalkToSprint/blend_position", lerp(current_blend, 2.0, 0.1))
@@ -17,11 +21,12 @@ func _process(delta):
 	else:
 		animation_tree.set("parameters/IdleToWalkToSprint/blend_position", lerp(current_blend, 0.0, 0.05))
 
-func _shoot():
-	if _check_if_states_are_playing():
+
+func shoot() -> void:
+	if check_if_states_are_playing():
 		return
-	if _check_for_empty_mag():
-		_reload()
+	if check_for_empty_mag():
+		reload()
 		return  
 	
 	on_shoot.emit()
@@ -37,12 +42,13 @@ func _shoot():
 	
 	current_magazine -= 1
 
-func _reload():
+
+func reload() -> void:
 	if player_reference.speed >= SPRINT_SPEED:
 		return
-	if _check_if_states_are_playing():
+	if check_if_states_are_playing():
 		return
-	if _check_for_fullMag():
+	if check_for_fullMag():
 		return
 	
 	animation_tree.set("parameters/conditions/reload", true)
@@ -54,6 +60,7 @@ func _reload():
 	await get_tree().create_timer(0.00001).timeout
 	animation_tree.set("parameters/conditions/reload", false)
 	current_magazine += 1
-	
-func _check_if_states_are_playing() -> bool:
-	return _check_for_state("fire") or _check_for_state("pump") or _check_for_state("reload")
+
+
+func check_if_states_are_playing() -> bool:
+	return check_for_state("fire") or check_for_state("pump") or check_for_state("reload")

@@ -16,20 +16,26 @@ const SPRINT_SPEED = 8.0
 
 signal on_shoot
 
-func _shoot() -> void:
+
+func shoot() -> void:
 	pass
-	
-func _reload() -> void:
+
+
+func reload() -> void:
 	pass
+
 
 func _process(delta) -> void:
 	pass
-	
-func _check_for_state(state: String) -> bool:
+
+
+func check_for_state(state: String) -> bool:
 	return animation_state_machine.get_current_node() == state
-	
-func _check_for_fullMag() -> bool:
+
+
+func check_for_fullMag() -> bool:
 	return current_magazine == magazine_size
-	
-func _check_for_empty_mag() -> bool:
+
+
+func check_for_empty_mag() -> bool:
 	return current_magazine == 0

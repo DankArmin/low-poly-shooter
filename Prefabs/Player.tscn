@@ -1,7 +1,7 @@
 [gd_scene load_steps=34 format=3 uid="uid://c6aqredf4dbx2"]
 
-[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_mn3nj"]
-[ext_resource type="Script" path="res://Prefabs/shakeable_camera.gd" id="2_syacf"]
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_mn3nj"]
+[ext_resource type="Script" path="res://Scripts/shakeable_camera.gd" id="2_adyn8"]
 [ext_resource type="Script" path="res://Scripts/WeaponHolder.gd" id="3_pg1f8"]
 [ext_resource type="PackedScene" uid="uid://2y0oqr0btuj6" path="res://Prefabs/Weapons/PumpShotgun/fps_pump_shotgun.tscn" id="5_dclpi"]
 
@@ -854,7 +854,7 @@ parameters/SpeedBlend/TimeScale/scale = 1.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0127712, 0.251448)
 
 [node name="ShakeableCamera" type="Area3D" parent="FPSHolder/CameraHolder"]
-script = ExtResource("2_syacf")
+script = ExtResource("2_adyn8")
 noise = SubResource("FastNoiseLite_0iqk5")
 
 [node name="Camera3D" type="Camera3D" parent="FPSHolder/CameraHolder/ShakeableCamera"]
