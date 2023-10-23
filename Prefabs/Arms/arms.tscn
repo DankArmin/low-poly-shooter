@@ -1,5 +1,6 @@
-[gd_scene load_steps=30 format=3 uid="uid://d22pde0hs548l"]
+[gd_scene load_steps=31 format=3 uid="uid://d22pde0hs548l"]
 
+[ext_resource type="Script" path="res://Scripts/arms.gd" id="1_a1dfi"]
 [ext_resource type="Script" path="res://Scripts/hit_box.gd" id="1_f4w7m"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6j6e3"]
@@ -2721,6 +2722,7 @@ graph_offset = Vector2(-48, 11)
 
 [node name="SK_Arms" type="Node3D"]
 transform = Transform3D(-0.3, 0, -2.62268e-08, 0, 0.3, 0, 2.62268e-08, 0, -0.3, 0, 0, 0.195015)
+script = ExtResource("1_a1dfi")
 
 [node name="Armature" type="Node3D" parent="."]
 
