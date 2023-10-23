@@ -1,7 +1,8 @@
-[gd_scene load_steps=35 format=3 uid="uid://bw7u2l07c2liu"]
+[gd_scene load_steps=30 format=3 uid="uid://bw7u2l07c2liu"]
 
 [ext_resource type="PackedScene" uid="uid://c6aqredf4dbx2" path="res://Prefabs/Player.tscn" id="1_bi6e5"]
 [ext_resource type="Material" uid="uid://c5gg1icrfoc0x" path="res://Materials/foliage.tres" id="2_pwaxj"]
+[ext_resource type="Environment" uid="uid://cj3lfo1s7eqe8" path="res://Environments/altar_woods.tres" id="2_w4pue"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="3_v0iub"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="4_bmc6b"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="5_cf3mg"]
@@ -18,79 +19,21 @@
 [ext_resource type="PackedScene" uid="uid://b18l7qrrkrlja" path="res://Prefabs/Rocks/rock_1.tscn" id="16_ung6u"]
 [ext_resource type="PackedScene" uid="uid://dndcdt5pk4hld" path="res://Prefabs/Rocks/rock_arc.tscn" id="17_kmug7"]
 [ext_resource type="PackedScene" uid="uid://bde6i0no1jt7m" path="res://Prefabs/Rocks/rock_bed.tscn" id="18_cfdf8"]
-[ext_resource type="PackedScene" uid="uid://dd2bap2ft8vgu" path="res://ui.tscn" id="19_ln1qq"]
 [ext_resource type="PackedScene" uid="uid://bxei062syxuyv" path="res://Prefabs/Enemies/Dummy.tscn" id="20_jd20y"]
-
-[sub_resource type="Gradient" id="Gradient_6ca7t"]
-offsets = PackedFloat32Array(0, 0.237037, 0.8, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.1872, 0.22176, 0.36, 1, 0.830971, 0.811491, 0.601168, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ariuk"]
-gradient = SubResource("Gradient_6ca7t")
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yejvq"]
-sky_top_color = Color(0.360784, 0.654902, 0.854902, 1)
-sky_horizon_color = Color(0.74902, 0.682353, 0.513726, 1)
-sky_curve = 0.0803832
-ground_bottom_color = Color(0.313726, 0.552941, 0.745098, 1)
-ground_horizon_color = Color(0.435294, 0.701961, 0.772549, 1)
-
-[sub_resource type="Sky" id="Sky_nkwi2"]
-sky_material = SubResource("ProceduralSkyMaterial_yejvq")
-
-[sub_resource type="Environment" id="Environment_oyju1"]
-background_mode = 2
-sky = SubResource("Sky_nkwi2")
-ambient_light_source = 3
-ambient_light_color = Color(1, 1, 0, 0)
-ambient_light_sky_contribution = 0.33
-reflected_light_source = 1
-tonemap_mode = 2
-tonemap_white = 5.0
-ssao_enabled = true
-ssao_radius = 1.2
-ssao_intensity = 10.0
-ssao_detail = 1.0
-ssao_horizon = 0.5
-ssao_sharpness = 0.0
-ssil_enabled = true
-ssil_intensity = 0.0
-ssil_sharpness = 0.0
-sdfgi_enabled = true
-sdfgi_use_occlusion = true
-sdfgi_bounce_feedback = 0.0
-sdfgi_cascades = 8
-sdfgi_min_cell_size = 0.015625
-sdfgi_energy = 1.2
-glow_enabled = true
-glow_normalized = true
-glow_blend_mode = 1
-fog_enabled = true
-fog_light_color = Color(0.631373, 0.513726, 0, 1)
-fog_light_energy = 0.1
-fog_density = 0.0
-fog_sky_affect = 0.0
-volumetric_fog_density = 0.01
-volumetric_fog_albedo = Color(1, 0.533333, 0, 1)
-volumetric_fog_length = 0.0
-volumetric_fog_sky_affect = 0.045
-adjustment_enabled = true
-adjustment_contrast = 0.9
-adjustment_color_correction = SubResource("GradientTexture1D_ariuk")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1vp36"]
 size = Vector2(100, 100)
 
-[sub_resource type="Resource" id="Resource_rmcqs"]
+[sub_resource type="Resource" id="Resource_jbh5x"]
 script = ExtResource("5_cf3mg")
-amount = 15000
+amount = 2500
 enabled = true
 override_global_seed = false
 custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_ut8tb"]
+[sub_resource type="Resource" id="Resource_keiat"]
 script = ExtResource("6_gfk5h")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(5, 360, 5)
@@ -101,7 +44,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_akv2b"]
+[sub_resource type="Resource" id="Resource_usxw1"]
 script = ExtResource("7_10v4x")
 iterations = 3
 offset_step = 0.2
@@ -113,7 +56,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_y5nus"]
+[sub_resource type="Resource" id="Resource_owrfp"]
 script = ExtResource("8_ti02w")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -129,9 +72,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_dj4e1"]
+[sub_resource type="Resource" id="Resource_dae0b"]
 script = ExtResource("4_bmc6b")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_rmcqs"), SubResource("Resource_ut8tb"), SubResource("Resource_akv2b"), SubResource("Resource_y5nus")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_jbh5x"), SubResource("Resource_keiat"), SubResource("Resource_usxw1"), SubResource("Resource_owrfp")])
 
 [sub_resource type="Resource" id="Resource_1ifvj"]
 script = ExtResource("11_fmeb0")
@@ -158,7 +101,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 3.68389, 4)
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
-environment = SubResource("Environment_oyju1")
+environment = ExtResource("2_w4pue")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 0.754847, 0.655901, 0, -0.655901, 0.754847, 0, 7.24191, 0)
@@ -172,7 +115,7 @@ mesh = SubResource("PlaneMesh_1vp36")
 
 [node name="ProtonScatter" type="Node3D" parent="Environment/CSGMesh3D"]
 script = ExtResource("3_v0iub")
-modifier_stack = SubResource("Resource_dj4e1")
+modifier_stack = SubResource("Resource_dae0b")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
@@ -353,8 +296,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 
 [node name="Rock_Bed" parent="." instance=ExtResource("18_cfdf8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -10)
-
-[node name="UI" parent="." instance=ExtResource("19_ln1qq")]
 
 [node name="Dummy" parent="." instance=ExtResource("20_jd20y")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 2, -13)
