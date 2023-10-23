@@ -2,13 +2,19 @@ extends CharacterBody3D
 
 class_name Player
 
-var speed
+var speed = 5.0
 
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 8.0
 const SONIC_SPEED = 11.0
 const JUMP_VELOCITY = 4.5
 const SENSITIVITY = 0.01
+
+const SONIC_TIMESCALE = 2.0
+const WALK_TIMESCALE = 1.0
+const SPRINT_TIMESCALE = 1.5
+
+const TIMESCALE_TRANSITION_SPEED = 1.0
 
 const LEG_ROTATION_SPEED = 0.1
 const BASE_LEGS_ROTATION = -135.0
@@ -108,19 +114,23 @@ func handle_sprint(input_dir, delta) -> void:
 		if sonic_timer < SONIC_TIME:
 			sonic_timer += delta
 		if sonic_timer >= SONIC_TIME:
-			speed = SONIC_SPEED
-			animTree.set("parameters/SpeedBlend/TimeScale/scale", 2)
-			speed_lines.show()
+			if speed <= SONIC_SPEED:
+				speed = SONIC_SPEED
+				if animTree.get("parameters/SpeedBlend/TimeScale/scale") < SONIC_TIMESCALE:
+					animTree.set("parameters/SpeedBlend/TimeScale/scale", lerp(animTree.get("parameters/SpeedBlend/TimeScale/scale"), SONIC_TIMESCALE, TIMESCALE_TRANSITION_SPEED))
+				speed_lines.show()
 		else:
 			speed = SPRINT_SPEED
-			animTree.set("parameters/SpeedBlend/TimeScale/scale", 1.5)
+			animTree.set("parameters/SpeedBlend/TimeScale/scale", lerp(animTree.get("parameters/SpeedBlend/TimeScale/scale"), SPRINT_TIMESCALE, TIMESCALE_TRANSITION_SPEED))
 			speed_lines.hide()
 	else:
 		if sonic_timer != 0:
 			sonic_timer = 0
-		speed = WALK_SPEED
-		animTree.set("parameters/SpeedBlend/TimeScale/scale", 1.0)
-		speed_lines.hide()
+		if speed >= WALK_SPEED:
+			speed -= delta
+			if animTree.get("parameters/SpeedBlend/TimeScale/scale") > WALK_TIMESCALE:
+				animTree.set("parameters/SpeedBlend/TimeScale/scale", lerp(animTree.get("parameters/SpeedBlend/TimeScale/scale"), WALK_TIMESCALE, TIMESCALE_TRANSITION_SPEED))
+			speed_lines.hide()
 
 
 func handle_fall(delta) -> void:
