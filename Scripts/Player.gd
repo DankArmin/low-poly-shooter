@@ -89,7 +89,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 
-func _process(delta):
+func _process(_delta):
 	if get_viewport().size_changed:
 		gun_viewport.size = get_viewport().size
 	gun_camera.global_transform = vcam.global_transform
@@ -164,7 +164,6 @@ func headbob(time) -> Vector3:
 
 
 func handle_leg_rotation(input_dir) -> void:
-	var leg_rotation = sk_legs.get_rotation
 	if input_dir.x > 0:
 		if sk_legs.rotation.y != -180:
 			sk_legs.rotation.y = lerp_angle(sk_legs.rotation.y, -180, LEG_ROTATION_SPEED)
@@ -180,16 +179,16 @@ func handle_directional_walk_animation(delta) -> void:
 	var current_blend = animTree.get("parameters/SpeedBlend/SpeedBlend1D/blend_position")
 	if (velocity.y > 0.0):
 		if animTree.get("parameters/SpeedBlend/SpeedBlend1D/blend_position") != 1.0:
-			animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), 1.0, 0.2))
+			animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), 1.0, 5 * delta))
 	elif (velocity.y < 0.0):
 		if animTree.get("parameters/SpeedBlend/SpeedBlend1D/blend_position") != -1.0:
-			animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), -1.0, 0.2))
+			animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), -1.0, 5 * delta))
 	elif (velocity.x > 0.0 || velocity.x < 0.0):
 		if animTree.get("parameters/SpeedBlend/SpeedBlend1D/blend_position") != 1.0:
-			animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), 1.0, 0.2))
+			animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), 1.0, 5 * delta))
 	else:
 		if animTree.get("parameters/SpeedBlend/SpeedBlend1D/blend_position") != 0.0:
-			animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), 0.0, 0.2))
+			animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), 0.0, 5 * delta))
 
 
 func dash() -> void:

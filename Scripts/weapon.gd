@@ -25,7 +25,7 @@ func reload() -> void:
 	pass
 
 
-func _process(delta) -> void:
+func _process(_delta) -> void:
 	pass
 
 

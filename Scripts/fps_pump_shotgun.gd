@@ -9,17 +9,17 @@ func _process(delta) -> void:
 	
 	if Input.is_action_just_pressed("Reload"):
 		reload()
-	handle_idle_to_sprint()
+	handle_idle_to_sprint(delta)
 
 
-func handle_idle_to_sprint() -> void:
+func handle_idle_to_sprint(delta) -> void:
 	var current_blend = animation_tree.get("parameters/IdleToWalkToSprint/blend_position")
 	if  (player_reference.speed >= SPRINT_SPEED) && (abs(player_reference.velocity.x) > 0 || abs(player_reference.velocity.y) > 0):
-		animation_tree.set("parameters/IdleToWalkToSprint/blend_position", lerp(current_blend, 2.0, 0.1))
+		animation_tree.set("parameters/IdleToWalkToSprint/blend_position", lerp(current_blend, 2.0, 7.5 * delta))
 	elif abs(player_reference.velocity.x) > 0 || abs(player_reference.velocity.y) > 0:
-		animation_tree.set("parameters/IdleToWalkToSprint/blend_position", lerp(current_blend, 1.0, 0.1))
+		animation_tree.set("parameters/IdleToWalkToSprint/blend_position", lerp(current_blend, 1.0, 7.5 * delta))
 	else:
-		animation_tree.set("parameters/IdleToWalkToSprint/blend_position", lerp(current_blend, 0.0, 0.05))
+		animation_tree.set("parameters/IdleToWalkToSprint/blend_position", lerp(current_blend, 0.0, 7.5 * delta))
 
 
 func shoot() -> void:
