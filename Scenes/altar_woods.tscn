@@ -1,8 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://bw7u2l07c2liu"]
+[gd_scene load_steps=31 format=3 uid="uid://bw7u2l07c2liu"]
 
 [ext_resource type="PackedScene" uid="uid://c6aqredf4dbx2" path="res://Prefabs/Player.tscn" id="1_bi6e5"]
-[ext_resource type="Material" uid="uid://c5gg1icrfoc0x" path="res://Materials/foliage.tres" id="2_pwaxj"]
 [ext_resource type="Environment" uid="uid://cj3lfo1s7eqe8" path="res://Environments/altar_woods.tres" id="2_w4pue"]
+[ext_resource type="Texture2D" uid="uid://bnpijcik1mm45" path="res://Sprites/grass.png" id="3_ppxdg"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/scatter.gd" id="3_v0iub"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/stack/modifier_stack.gd" id="4_bmc6b"]
 [ext_resource type="Script" path="res://addons/proton_scatter/src/modifiers/create_inside_random.gd" id="5_cf3mg"]
@@ -21,10 +21,15 @@
 [ext_resource type="PackedScene" uid="uid://bde6i0no1jt7m" path="res://Prefabs/Rocks/rock_bed.tscn" id="18_cfdf8"]
 [ext_resource type="PackedScene" uid="uid://dvdyrfgggbfmu" path="res://Prefabs/Enemies/dummy_v2.tscn" id="20_f3q41"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x15ub"]
+albedo_texture = ExtResource("3_ppxdg")
+metallic_specular = 0.0
+uv1_scale = Vector3(50, 50, 50)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_1vp36"]
 size = Vector2(100, 100)
 
-[sub_resource type="Resource" id="Resource_401ak"]
+[sub_resource type="Resource" id="Resource_f4b8v"]
 script = ExtResource("5_cf3mg")
 amount = 2500
 enabled = true
@@ -33,7 +38,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_nokmn"]
+[sub_resource type="Resource" id="Resource_57qd8"]
 script = ExtResource("6_gfk5h")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(5, 360, 5)
@@ -44,7 +49,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_4glgf"]
+[sub_resource type="Resource" id="Resource_3vl28"]
 script = ExtResource("7_10v4x")
 iterations = 3
 offset_step = 0.2
@@ -56,7 +61,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_w6w1x"]
+[sub_resource type="Resource" id="Resource_mfui2"]
 script = ExtResource("8_ti02w")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -72,9 +77,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_sibmo"]
+[sub_resource type="Resource" id="Resource_4d3ry"]
 script = ExtResource("4_bmc6b")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_401ak"), SubResource("Resource_nokmn"), SubResource("Resource_4glgf"), SubResource("Resource_w6w1x")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_f4b8v"), SubResource("Resource_57qd8"), SubResource("Resource_3vl28"), SubResource("Resource_mfui2")])
 
 [sub_resource type="Resource" id="Resource_1ifvj"]
 script = ExtResource("11_fmeb0")
@@ -109,13 +114,13 @@ shadow_enabled = true
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="Environment"]
 layers = 9
-material_override = ExtResource("2_pwaxj")
+material_override = SubResource("StandardMaterial3D_x15ub")
 use_collision = true
 mesh = SubResource("PlaneMesh_1vp36")
 
 [node name="ProtonScatter" type="Node3D" parent="Environment/CSGMesh3D"]
 script = ExtResource("3_v0iub")
-modifier_stack = SubResource("Resource_sibmo")
+modifier_stack = SubResource("Resource_4d3ry")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
