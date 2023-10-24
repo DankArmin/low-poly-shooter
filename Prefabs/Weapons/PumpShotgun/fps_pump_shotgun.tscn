@@ -1,10 +1,11 @@
-[gd_scene load_steps=38 format=3 uid="uid://2y0oqr0btuj6"]
+[gd_scene load_steps=39 format=3 uid="uid://2y0oqr0btuj6"]
 
 [ext_resource type="Animation" uid="uid://bt02756hlca8h" path="res://Animations/Weapons/Shotgun/draw.res" id="1_0bkye"]
 [ext_resource type="Script" path="res://Scripts/fps_pump_shotgun.gd" id="1_dfmog"]
 [ext_resource type="AnimationLibrary" uid="uid://dalt55rmmnl6u" path="res://Animations/Weapons/Shotgun/pumpshotgun.res" id="2_ksjk0"]
 [ext_resource type="Texture2D" uid="uid://cnu74topc0g5r" path="res://Materials/MuzzleFlash.png" id="2_qctda"]
 [ext_resource type="Script" path="res://Scripts/shotgun_shot.gd" id="5_0vbnb"]
+[ext_resource type="AudioStream" uid="uid://ctq3blijdjj82" path="res://Sounds/PumpShotgun/shotgun-firing-4-6746.mp3" id="6_qtrp1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gft3q"]
 resource_name = "Glove"
@@ -465,21 +466,21 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(0.776239, -0.0667689, -0.626894, -0.00151679, -0.994571, 0.104051, -0.630438, -0.0798176, -0.772126, 0.832599, -0.765504, 0.422803)
 bones/1/enabled = true
 bones/1/position = Vector3(0.832599, -0.765504, 0.422803)
-bones/1/rotation = Quaternion(0.832207, -0.207248, 0.1192, 0.500271)
+bones/1/rotation = Quaternion(0.843511, -0.202629, 0.121024, 0.482477)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Arm_1.L"
 bones/2/parent = 1
 bones/2/rest = Transform3D(0.999969, 0.00634649, 0.00455966, -0.0063465, 0.319089, 0.947703, 0.00455965, -0.947703, 0.31912, -1.11759e-08, 1.96764, -1.49012e-08)
 bones/2/enabled = true
 bones/2/position = Vector3(-1.11759e-08, 1.96764, -1.49012e-08)
-bones/2/rotation = Quaternion(-0.460146, -4.482e-09, -0.00308147, 0.887838)
+bones/2/rotation = Quaternion(-0.466787, -1.28057e-09, -0.00312594, 0.884364)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Hand.L"
 bones/3/parent = 2
 bones/3/rest = Transform3D(-0.184435, -0.692148, -0.697793, 0.100399, -0.719526, 0.687169, -0.977703, 0.0566803, 0.202197, -4.47035e-08, 2, -5.96046e-08)
 bones/3/enabled = true
 bones/3/position = Vector3(-4.47035e-08, 2, -5.96046e-08)
-bones/3/rotation = Quaternion(-0.155413, 0.550043, 0.622952, 0.53407)
+bones/3/rotation = Quaternion(-0.151312, 0.539764, 0.62321, 0.545314)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Pinky_0.L"
 bones/4/parent = 3
@@ -591,21 +592,21 @@ bones/19/parent = 0
 bones/19/rest = Transform3D(0.8082, -0.562379, -0.174764, -0.582009, -0.808043, -0.0912849, -0.0898802, 0.175491, -0.98037, -0.623347, -0.826235, -1.03706)
 bones/19/enabled = true
 bones/19/position = Vector3(-0.623347, -0.826235, -1.03706)
-bones/19/rotation = Quaternion(0.905745, -0.353528, 0.0773235, 0.220602)
+bones/19/rotation = Quaternion(0.901972, -0.356202, 0.0805575, 0.230388)
 bones/19/scale = Vector3(1, 1, 1)
 bones/20/name = "Arm_1.R"
 bones/20/parent = 19
 bones/20/rest = Transform3D(0.999943, -0.00645185, -0.00849034, 0.00645177, -0.267895, 0.963426, -0.0084904, -0.963427, -0.267838, -1.45286e-07, 1.96764, 1.19209e-07)
 bones/20/enabled = true
 bones/20/position = Vector3(-1.45286e-07, 1.96764, 1.19209e-07)
-bones/20/rotation = Quaternion(-0.899874, -9.54606e-09, 0.00602621, 0.436109)
+bones/20/rotation = Quaternion(-0.900087, 1.61817e-08, 0.00602765, 0.435668)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/name = "Hand.R"
 bones/21/parent = 20
 bones/21/rest = Transform3D(-0.24896, 0.945564, 0.209592, 0.489612, -0.0638425, 0.8696, 0.835643, 0.319115, -0.447065, 8.9407e-08, 2, -5.96046e-08)
 bones/21/enabled = true
 bones/21/position = Vector3(8.9407e-08, 2, -5.96046e-08)
-bones/21/rotation = Quaternion(0.0412012, 0.652121, 0.664873, -0.361917)
+bones/21/rotation = Quaternion(0.05455, 0.624617, 0.688889, -0.363744)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "Pinky_0.R"
 bones/22/parent = 21
@@ -733,8 +734,8 @@ bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0.466395, 0.884564, -0.00470936, -0.642942, 0.335331, -0.688607, -0.607537, 0.324191, 0.72512, -0.97418, -3.14786, 1.78639)
 bones/0/enabled = true
-bones/0/position = Vector3(-1.49688, -2.36557, -0.301638)
-bones/0/rotation = Quaternion(-0.0168309, 0, -2.98024e-08, 0.999858)
+bones/0/position = Vector3(-1.49688, -2.36557, -0.323633)
+bones/0/rotation = Quaternion(0.0107325, 1.49012e-08, 3.72529e-09, 0.999942)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Pump"
 bones/1/parent = 0
@@ -837,6 +838,16 @@ collide_with_areas = true
 transform = Transform3D(0.939693, 0.34202, 0, 1.49502e-08, -4.10752e-08, -0.999999, -0.34202, 0.939692, -4.37114e-08, 0, 0, 0)
 target_position = Vector3(0, -10, 0)
 collide_with_areas = true
+
+[node name="ShotgunShotSound" type="AudioStreamPlayer3D" parent="ShotgunShot"]
+stream = ExtResource("6_qtrp1")
+volume_db = 1.0
+pitch_scale = 1.5
+
+[node name="ShotgunCockSound" type="AudioStreamPlayer3D" parent="."]
+
+[node name="ShotgunLoadSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, 0, 0, 0)
 
 [connection signal="on_shoot" from="." to="ShotgunShot" method="_on_fps_pump_shotgun_on_shoot"]
 [connection signal="on_shoot" from="." to="ShotgunShot" method="_fire"]

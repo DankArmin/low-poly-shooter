@@ -1,6 +1,8 @@
 extends Weapon
 
 class_name PumpShotgun
+@onready var shotgun_cock_sound = $ShotgunCockSound
+@onready var shotgun_load_sound = $ShotgunLoadSound
 
 
 func _process(delta) -> void:	
