@@ -39,15 +39,20 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var animPlayer = $FPSHolder/SK_Legs/AnimationPlayer
 @onready var sk_legs = $FPSHolder/SK_Legs
 @onready var speed_lines = $FPSHolder/CameraHolder/ShakeableCamera/Camera3D/SpeedLines
+@onready var gun_camera = $FPSHolder/CameraHolder/ShakeableCamera/SubViewportContainer/SubViewport/GunCamera
+@onready var gun_viewport = $FPSHolder/CameraHolder/ShakeableCamera/SubViewportContainer/SubViewport
 
 var is_dashing = false
-const DASH_TIME = 1.0
+const DASH_TIME = 2.0
 var dash_timer = 0.0
 
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	speed_lines.hide()
+	var main_environment = vcam.get_environment()
+	gun_camera.set_environment(main_environment)
+	gun_viewport.size = get_viewport().size
 
 
 func _unhandled_input(event):
@@ -78,16 +83,23 @@ func _physics_process(delta):
 	
 	handle_fov(delta)
 	
-	if Input.is_action_just_pressed("Sprint"):
+	if Input.is_action_just_pressed("Dash"):
 		dash()
 	
 	move_and_slide()
+
+
+func _process(delta):
+	if get_viewport().size_changed:
+		gun_viewport.size = get_viewport().size
+	gun_camera.global_transform = vcam.global_transform
 
 
 func handle_fov(delta) -> void:
 	var velocity_clamped = clamp(velocity.length(), 1, SONIC_SPEED * 2.0)
 	var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
 	vcam.fov = lerp(vcam.fov, target_fov, delta * 8.0)
+	gun_camera.fov = vcam.fov
 
 
 func handle_headbob(delta) -> void:
@@ -188,7 +200,6 @@ func dash() -> void:
 		if abs(velocity.z) >= 1:
 			velocity.z *= 10 
 		var timer = Timer.new()
-		timer.set_wait_time(0)
 		timer.set_one_shot(true)
 		self.add_child(timer)
 		timer.start()

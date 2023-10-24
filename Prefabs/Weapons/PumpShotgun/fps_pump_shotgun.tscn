@@ -465,21 +465,21 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(0.776239, -0.0667689, -0.626894, -0.00151679, -0.994571, 0.104051, -0.630438, -0.0798176, -0.772126, 0.832599, -0.765504, 0.422803)
 bones/1/enabled = true
 bones/1/position = Vector3(0.832599, -0.765504, 0.422803)
-bones/1/rotation = Quaternion(0.842683, -0.203048, 0.121008, 0.48375)
+bones/1/rotation = Quaternion(0.843274, -0.2009, 0.118202, 0.48431)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Arm_1.L"
 bones/2/parent = 1
 bones/2/rest = Transform3D(0.999969, 0.00634649, 0.00455966, -0.0063465, 0.319089, 0.947703, 0.00455965, -0.947703, 0.31912, -1.11759e-08, 1.96764, -1.49012e-08)
 bones/2/enabled = true
 bones/2/position = Vector3(-1.11759e-08, 1.96764, -1.49012e-08)
-bones/2/rotation = Quaternion(-0.466574, -5.82077e-10, -0.00312451, 0.884477)
+bones/2/rotation = Quaternion(-0.453153, -1.21072e-08, -0.00303466, 0.891428)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Hand.L"
 bones/3/parent = 2
 bones/3/rest = Transform3D(-0.184435, -0.692148, -0.697793, 0.100399, -0.719526, 0.687169, -0.977703, 0.0566803, 0.202197, -4.47035e-08, 2, -5.96046e-08)
 bones/3/enabled = true
 bones/3/position = Vector3(-4.47035e-08, 2, -5.96046e-08)
-bones/3/rotation = Quaternion(-0.150943, 0.539928, 0.623573, 0.54484)
+bones/3/rotation = Quaternion(-0.163902, 0.550154, 0.615692, 0.539805)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Pinky_0.L"
 bones/4/parent = 3
@@ -591,21 +591,21 @@ bones/19/parent = 0
 bones/19/rest = Transform3D(0.8082, -0.562379, -0.174764, -0.582009, -0.808043, -0.0912849, -0.0898802, 0.175491, -0.98037, -0.623347, -0.826235, -1.03706)
 bones/19/enabled = true
 bones/19/position = Vector3(-0.623347, -0.826235, -1.03706)
-bones/19/rotation = Quaternion(0.902031, -0.356176, 0.0806221, 0.230172)
+bones/19/rotation = Quaternion(0.909006, -0.350795, 0.071627, 0.213355)
 bones/19/scale = Vector3(1, 1, 1)
 bones/20/name = "Arm_1.R"
 bones/20/parent = 19
 bones/20/rest = Transform3D(0.999943, -0.00645185, -0.00849034, 0.00645177, -0.267895, 0.963426, -0.0084904, -0.963427, -0.267838, -1.45286e-07, 1.96764, 1.19209e-07)
 bones/20/enabled = true
 bones/20/position = Vector3(-1.45286e-07, 1.96764, 1.19209e-07)
-bones/20/rotation = Quaternion(-0.900201, 5.58794e-09, 0.0060284, 0.435434)
+bones/20/rotation = Quaternion(-0.898288, 5.3551e-09, 0.00601558, 0.439367)
 bones/20/scale = Vector3(1, 1, 1)
 bones/21/name = "Hand.R"
 bones/21/parent = 20
 bones/21/rest = Transform3D(-0.24896, 0.945564, 0.209592, 0.489612, -0.0638425, 0.8696, 0.835643, 0.319115, -0.447065, 8.9407e-08, 2, -5.96046e-08)
 bones/21/enabled = true
 bones/21/position = Vector3(8.9407e-08, 2, -5.96046e-08)
-bones/21/rotation = Quaternion(0.0539961, 0.625587, 0.687955, -0.363927)
+bones/21/rotation = Quaternion(0.0454032, 0.647412, 0.671551, -0.357513)
 bones/21/scale = Vector3(1, 1, 1)
 bones/22/name = "Pinky_0.R"
 bones/22/parent = 21
@@ -721,6 +721,7 @@ bones/37/rotation = Quaternion(-0.707107, 0, 0, 0.707107)
 bones/37/scale = Vector3(1, 1, 1)
 
 [node name="Arms" type="MeshInstance3D" parent="SKPumpShotgun/Armature/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_7bdvh")
 skin = SubResource("Skin_mi6cf")
 
@@ -732,8 +733,8 @@ bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(0.466395, 0.884564, -0.00470936, -0.642942, 0.335331, -0.688607, -0.607537, 0.324191, 0.72512, -0.97418, -3.14786, 1.78639)
 bones/0/enabled = true
-bones/0/position = Vector3(-1.49688, -2.36557, -0.327695)
-bones/0/rotation = Quaternion(0.008959, 0, -7.45058e-09, 0.99996)
+bones/0/position = Vector3(-1.49688, -2.36557, -0.202947)
+bones/0/rotation = Quaternion(0.00509161, 1.49012e-08, 1.11759e-08, 0.999987)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Pump"
 bones/1/parent = 0
@@ -758,14 +759,17 @@ bones/3/rotation = Quaternion(0.186838, 2.12711e-07, 1.13762e-08, 0.982391)
 bones/3/scale = Vector3(1, 1, 1)
 
 [node name="BottomLatch" type="MeshInstance3D" parent="SKPumpShotgun/Gun/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_pre3o")
 skin = SubResource("Skin_opx5x")
 
 [node name="Pump" type="MeshInstance3D" parent="SKPumpShotgun/Gun/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_1vt5t")
 skin = SubResource("Skin_opx5x")
 
 [node name="Receiver" type="MeshInstance3D" parent="SKPumpShotgun/Gun/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_pceyx")
 skin = SubResource("Skin_opx5x")
 
@@ -781,6 +785,7 @@ mesh = SubResource("PlaneMesh_4idsm")
 skeleton = NodePath("../..")
 
 [node name="SideLatch" type="MeshInstance3D" parent="SKPumpShotgun/Gun/Skeleton3D"]
+layers = 2
 mesh = SubResource("ArrayMesh_rftix")
 skin = SubResource("Skin_opx5x")
 
