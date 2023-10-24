@@ -40,6 +40,10 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var sk_legs = $FPSHolder/SK_Legs
 @onready var speed_lines = $FPSHolder/CameraHolder/ShakeableCamera/Camera3D/SpeedLines
 
+var is_dashing = false
+const DASH_TIME = 1.0
+var dash_timer = 0.0
+
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -62,7 +66,9 @@ func _physics_process(delta):
 	
 	handle_sprint(input_dir, delta)
 
-	handle_movement(input_dir, delta)
+	if !is_dashing:
+		dash_timer += delta
+		handle_movement(input_dir, delta)
 
 	handle_headbob(delta)
 
@@ -71,6 +77,9 @@ func _physics_process(delta):
 	handle_leg_rotation(input_dir)
 	
 	handle_fov(delta)
+	
+	if Input.is_action_just_pressed("Sprint"):
+		dash()
 	
 	move_and_slide()
 
@@ -90,8 +99,8 @@ func handle_movement(input_dir, delta) -> void:
 	var direction = (fps_holder.transform.basis * Vector3(input_dir.x, 0.0, input_dir.y)).normalized()
 	if is_on_floor():
 		if direction:
-			velocity.x = direction.x * speed
-			velocity.z = direction.z * speed
+			velocity.x = lerp(velocity.x, direction.x * speed, .75)
+			velocity.z = lerp(velocity.z, direction.z * speed, .75)
 		else:
 			velocity.x = 0.0
 			velocity.z = 0.0
@@ -169,3 +178,20 @@ func handle_directional_walk_animation(delta) -> void:
 	else:
 		if animTree.get("parameters/SpeedBlend/SpeedBlend1D/blend_position") != 0.0:
 			animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), 0.0, 0.2))
+
+
+func dash() -> void:
+	if dash_timer >= DASH_TIME:
+		is_dashing = true
+		if abs(velocity.x) >= 1:
+			velocity.x *= 10 
+		if abs(velocity.z) >= 1:
+			velocity.z *= 10 
+		var timer = Timer.new()
+		timer.set_wait_time(0)
+		timer.set_one_shot(true)
+		self.add_child(timer)
+		timer.start()
+		await get_tree().create_timer(0.1).timeout
+		is_dashing = false
+		dash_timer = 0.0
