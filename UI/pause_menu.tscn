@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://ea3y1f3l0j0r"]
+[gd_scene load_steps=3 format=3 uid="uid://ea3y1f3l0j0r"]
 
 [ext_resource type="Script" path="res://UI/pause_menu.gd" id="1_12xfy"]
+[ext_resource type="Theme" uid="uid://c8n7do60702xj" path="res://UI/game_theme.tres" id="2_ulmj6"]
 
 [node name="PauseMenu" type="Control"]
 process_mode = 2
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_ulmj6")
 script = ExtResource("1_12xfy")
 
 [node name="Panel" type="Panel" parent="."]
@@ -41,6 +43,7 @@ horizontal_alignment = 1
 
 [node name="ResumeButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_ulmj6")
 text = "Resume"
 
 [node name="SaveButton" type="Button" parent="Panel/VBoxContainer"]

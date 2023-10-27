@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4h7v46h214d1"
-path="res://.godot/imported/Subtract.png-599d0a085f4362696a8a77b493db1564.ctex"
+uid="uid://0aj76lqt72ti"
+path="res://.godot/imported/ui_box_reg_2.png-cf836da68b4e803386686f606f637d45.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Subtract.png"
-dest_files=["res://.godot/imported/Subtract.png-599d0a085f4362696a8a77b493db1564.ctex"]
+source_file="res://Sprites/ui_box_reg_2.png"
+dest_files=["res://.godot/imported/ui_box_reg_2.png-cf836da68b4e803386686f606f637d45.ctex"]
 
 [params]
 

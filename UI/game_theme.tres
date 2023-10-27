@@ -1,0 +1,18 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://c8n7do60702xj"]
+
+[ext_resource type="Texture2D" uid="uid://0aj76lqt72ti" path="res://Sprites/ui_box_reg_2.png" id="1_sh0em"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wo6na"]
+texture = ExtResource("1_sh0em")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3fub8"]
+texture = ExtResource("1_sh0em")
+
+[resource]
+Panel/styles/panel = SubResource("StyleBoxTexture_wo6na")
+button/base_type = &"Button"
+button/styles/disabled = null
+button/styles/focus = null
+button/styles/hover = null
+button/styles/normal = SubResource("StyleBoxTexture_3fub8")
+button/styles/pressed = null
