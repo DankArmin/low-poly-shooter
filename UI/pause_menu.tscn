@@ -1,7 +1,51 @@
-[gd_scene load_steps=3 format=3 uid="uid://ea3y1f3l0j0r"]
+[gd_scene load_steps=8 format=3 uid="uid://ea3y1f3l0j0r"]
 
 [ext_resource type="Script" path="res://UI/pause_menu.gd" id="1_12xfy"]
 [ext_resource type="Theme" uid="uid://c8n7do60702xj" path="res://UI/game_theme.tres" id="2_ulmj6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cmu6e"]
+bg_color = Color(0.0705882, 0.0666667, 0.0627451, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.270588, 0.243137, 0.215686, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_njf78"]
+bg_color = Color(0.0705882, 0.0666667, 0.0627451, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.494118, 0.376471, 0.168627, 1)
+expand_margin_left = 8.0
+expand_margin_top = 8.0
+expand_margin_right = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h6j70"]
+bg_color = Color(0.0705882, 0.0666667, 0.0627451, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.690196, 0.537255, 0.266667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ydq55"]
+bg_color = Color(0.0705882, 0.0666667, 0.0627451, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.196078, 0.196078, 0.196078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vn4c"]
+bg_color = Color(0.0705882, 0.0666667, 0.0627451, 1)
+border_width_left = 6
+border_width_top = 6
+border_width_right = 6
+border_width_bottom = 6
+border_color = Color(0.690196, 0.537255, 0.266667, 1)
 
 [node name="PauseMenu" type="Control"]
 process_mode = 2
@@ -35,28 +79,74 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 12
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.270588, 0.243137, 0.215686, 1)
 text = "~Paused~"
 horizontal_alignment = 1
 
 [node name="ResumeButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_ulmj6")
+theme_override_colors/font_color = Color(0.270588, 0.243137, 0.215686, 1)
+theme_override_colors/font_pressed_color = Color(0.690196, 0.537255, 0.266667, 1)
+theme_override_colors/font_hover_color = Color(0.494118, 0.376471, 0.168627, 1)
+theme_override_colors/font_focus_color = Color(0.494118, 0.376471, 0.168627, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.690196, 0.537255, 0.266667, 1)
+theme_override_colors/font_disabled_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_cmu6e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_njf78")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h6j70")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ydq55")
+theme_override_styles/focus = SubResource("StyleBoxFlat_7vn4c")
 text = "Resume"
 
 [node name="SaveButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.270588, 0.243137, 0.215686, 1)
+theme_override_colors/font_pressed_color = Color(0.690196, 0.537255, 0.266667, 1)
+theme_override_colors/font_hover_color = Color(0.494118, 0.376471, 0.168627, 1)
+theme_override_colors/font_focus_color = Color(0.494118, 0.376471, 0.168627, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.690196, 0.537255, 0.266667, 1)
+theme_override_colors/font_disabled_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_cmu6e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_njf78")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h6j70")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ydq55")
+theme_override_styles/focus = SubResource("StyleBoxFlat_7vn4c")
 text = "Save
 "
 
 [node name="LoadButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.270588, 0.243137, 0.215686, 1)
+theme_override_colors/font_pressed_color = Color(0.690196, 0.537255, 0.266667, 1)
+theme_override_colors/font_hover_color = Color(0.494118, 0.376471, 0.168627, 1)
+theme_override_colors/font_focus_color = Color(0.494118, 0.376471, 0.168627, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.690196, 0.537255, 0.266667, 1)
+theme_override_colors/font_disabled_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_cmu6e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_njf78")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h6j70")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ydq55")
+theme_override_styles/focus = SubResource("StyleBoxFlat_7vn4c")
 text = "Load"
 
 [node name="QuitButton" type="Button" parent="Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.270588, 0.243137, 0.215686, 1)
+theme_override_colors/font_pressed_color = Color(0.690196, 0.537255, 0.266667, 1)
+theme_override_colors/font_hover_color = Color(0.494118, 0.376471, 0.168627, 1)
+theme_override_colors/font_focus_color = Color(0.494118, 0.376471, 0.168627, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.690196, 0.537255, 0.266667, 1)
+theme_override_colors/font_disabled_color = Color(0.196078, 0.196078, 0.196078, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_cmu6e")
+theme_override_styles/hover = SubResource("StyleBoxFlat_njf78")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h6j70")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ydq55")
+theme_override_styles/focus = SubResource("StyleBoxFlat_7vn4c")
 text = "Quit"
 
 [connection signal="pressed" from="Panel/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
