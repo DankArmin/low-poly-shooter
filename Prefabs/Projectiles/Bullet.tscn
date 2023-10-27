@@ -26,6 +26,7 @@ initial_velocity_max = 5.0
 size = Vector3(0.04, 0.04, 0.04)
 
 [node name="Bullet" type="Node3D" groups=["Bullets"]]
+process_mode = 1
 script = ExtResource("1_4b81m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
