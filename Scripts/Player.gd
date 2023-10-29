@@ -205,3 +205,13 @@ func dash() -> void:
 		await get_tree().create_timer(0.1).timeout
 		is_dashing = false
 		dash_timer = 0.0
+
+func save():
+	var save_dict = {
+		"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"pos_x" : position.x,
+		"pos_y" : position.y,
+		"pos_z" : position.z,
+	}
+	return save_dict

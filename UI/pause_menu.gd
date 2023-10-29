@@ -21,12 +21,13 @@ func _on_resume_button_pressed():
 
 
 func _on_save_button_pressed():
-	pass # Replace with function body.
+	SaveSystem.save_game()
 
 
 func _on_load_button_pressed():
-	var loading_screen = load("res://Scenes/loading_screen.tscn")
-	get_tree().change_scene_to_packed(loading_screen)
+	#var loading_screen = load("res://Scenes/loading_screen.tscn")
+	#get_tree().change_scene_to_packed(loading_screen)
+	SaveSystem.load_game()
 
 
 func _on_quit_button_pressed():
