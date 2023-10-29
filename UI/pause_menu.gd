@@ -25,7 +25,8 @@ func _on_save_button_pressed():
 
 
 func _on_load_button_pressed():
-	pass # Replace with function body.
+	var loading_screen = load("res://Scenes/loading_screen.tscn")
+	get_tree().change_scene_to_packed(loading_screen)
 
 
 func _on_quit_button_pressed():

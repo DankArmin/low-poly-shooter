@@ -13,6 +13,10 @@ var is_game_paused : bool = false:
 		emit_signal("on_game_paused", is_game_paused)
 
 
+func _ready():
+	is_game_paused = false
+
+
 func _input(event : InputEvent):
 	if event.is_action_pressed("ui_cancel"):
 		is_game_paused = !is_game_paused
