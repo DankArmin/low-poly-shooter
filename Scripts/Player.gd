@@ -33,6 +33,7 @@ var sonic_timer = 0.0
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var vcam = $FPSHolder/CameraHolder/ShakeableCamera/Camera3D
+@onready var shakeable_camera = $FPSHolder/CameraHolder/ShakeableCamera
 @onready var fps_holder = $FPSHolder
 @onready var cam = $FPSHolder/CameraHolder
 @onready var animTree = $FPSHolder/SK_Legs/AnimationTree
@@ -48,6 +49,8 @@ var dash_timer = 0.0
 @onready var full_collision = $FullCollision
 @onready var small_collision = $SmallCollision
 var has_dashed = false
+var SIDEWARD_DASH_VElOCITY = 5
+var UPWARD_DASH_VElOCITY = 2
 
 
 func _ready():
@@ -219,28 +222,30 @@ func handle_directional_walk_animation(delta) -> void:
 
 func handle_getting_up() -> void:
 	if is_on_floor() && has_dashed:
+		shakeable_camera.add_trauma(.5)
 		animTree.set("parameters/conditions/dash", false)
 		has_dashed = false
 		var timer = Timer.new()
 		timer.set_one_shot(true)
 		self.add_child(timer)
 		timer.start()
-		await get_tree().create_timer(0.1).timeout
-		velocity.y = 2
+		await get_tree().create_timer(0.25).timeout
+		velocity.y = 3
 		animTree.set("parameters/conditions/get up", true)
 		full_collision.disabled = false
 
 
 func dash(input_dir) -> void:
-	if dash_timer >= DASH_TIME && is_on_floor() && input_dir.y > 0:
+	if dash_timer >= DASH_TIME && is_on_floor() && input_dir.y >= 0:
 		full_collision.disabled = true
 		animTree.set("parameters/conditions/get up", false)
 		animTree.set("parameters/conditions/dash", true)
 		is_dashing = true
 		if abs(velocity.x) >= 1:
-			velocity.x *= 10 
+			velocity.x *= SIDEWARD_DASH_VElOCITY 
 		if abs(velocity.z) >= 1:
-			velocity.z *= 10 
+			velocity.z *= SIDEWARD_DASH_VElOCITY 
+		velocity.y = UPWARD_DASH_VElOCITY
 		var timer = Timer.new()
 		timer.set_one_shot(true)
 		self.add_child(timer)
