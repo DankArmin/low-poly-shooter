@@ -25,9 +25,7 @@ func _on_save_button_pressed():
 
 
 func _on_load_button_pressed():
-	#var loading_screen = load("res://Scenes/loading_screen.tscn")
-	#get_tree().change_scene_to_packed(loading_screen)
-	SaveSystem.load_game()
+	Functions.load_screen_to_scene("res://Scenes/game.tscn", {})
 
 
 func _on_quit_button_pressed():

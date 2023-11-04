@@ -4,6 +4,8 @@ class_name GameManager
 
 signal on_game_paused(is_paused : bool)
 
+@export var parameters : Dictionary
+
 var is_game_paused : bool = false:
 	get:
 		return is_game_paused
