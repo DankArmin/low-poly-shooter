@@ -45,6 +45,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var is_dashing = false
 const DASH_TIME = 2.0
 var dash_timer = 0.0
+@onready var full_collision = $FullCollision
+@onready var small_collision = $SmallCollision
+var has_dashed = false
 
 
 func _ready():
@@ -83,8 +86,10 @@ func _physics_process(delta):
 	
 	handle_fov(delta)
 	
+	handle_getting_up()
+	
 	if Input.is_action_just_pressed("Dash"):
-		dash()
+		dash(input_dir)
 	
 	move_and_slide()
 
@@ -164,12 +169,33 @@ func headbob(time) -> Vector3:
 
 
 func handle_leg_rotation(input_dir) -> void:
+	if has_dashed: return
+	if input_dir.y < 0:
+		handle_forward_leg_rotation(input_dir)
+	else:
+		handle_backward_leg_rotation(input_dir)
+		
+
+
+func handle_forward_leg_rotation(input_dir) -> void:
 	if input_dir.x > 0:
 		if sk_legs.rotation.y != -180:
 			sk_legs.rotation.y = lerp_angle(sk_legs.rotation.y, -180, LEG_ROTATION_SPEED)
 	elif input_dir.x < 0:
 		if sk_legs.rotation.y != -90:
 			sk_legs.rotation.y = lerp_angle(sk_legs.rotation.y, -90, LEG_ROTATION_SPEED)
+	else:
+		if sk_legs.rotation.y != -135:
+			sk_legs.rotation.y = lerp_angle(sk_legs.rotation.y, -135, LEG_ROTATION_SPEED)
+
+
+func handle_backward_leg_rotation(input_dir) -> void:
+	if input_dir.x > 0:
+		if sk_legs.rotation.y != -180:
+			sk_legs.rotation.y = lerp_angle(sk_legs.rotation.y, -90, LEG_ROTATION_SPEED)
+	elif input_dir.x < 0:
+		if sk_legs.rotation.y != -90:
+			sk_legs.rotation.y = lerp_angle(sk_legs.rotation.y, -180, LEG_ROTATION_SPEED)
 	else:
 		if sk_legs.rotation.y != -135:
 			sk_legs.rotation.y = lerp_angle(sk_legs.rotation.y, -135, LEG_ROTATION_SPEED)
@@ -191,8 +217,25 @@ func handle_directional_walk_animation(delta) -> void:
 			animTree.set("parameters/SpeedBlend/SpeedBlend1D/blend_position", lerp(float(current_blend), 0.0, 5 * delta))
 
 
-func dash() -> void:
-	if dash_timer >= DASH_TIME:
+func handle_getting_up() -> void:
+	if is_on_floor() && has_dashed:
+		animTree.set("parameters/conditions/dash", false)
+		has_dashed = false
+		var timer = Timer.new()
+		timer.set_one_shot(true)
+		self.add_child(timer)
+		timer.start()
+		await get_tree().create_timer(0.1).timeout
+		velocity.y = 2
+		animTree.set("parameters/conditions/get up", true)
+		full_collision.disabled = false
+
+
+func dash(input_dir) -> void:
+	if dash_timer >= DASH_TIME && is_on_floor() && input_dir.y > 0:
+		full_collision.disabled = true
+		animTree.set("parameters/conditions/get up", false)
+		animTree.set("parameters/conditions/dash", true)
 		is_dashing = true
 		if abs(velocity.x) >= 1:
 			velocity.x *= 10 
@@ -205,6 +248,7 @@ func dash() -> void:
 		await get_tree().create_timer(0.1).timeout
 		is_dashing = false
 		dash_timer = 0.0
+		has_dashed = true
 
 func save():
 	var save_dict = {
