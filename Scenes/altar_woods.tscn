@@ -29,7 +29,7 @@ uv1_scale = Vector3(50, 50, 50)
 [sub_resource type="PlaneMesh" id="PlaneMesh_1vp36"]
 size = Vector2(100, 100)
 
-[sub_resource type="Resource" id="Resource_ynv45"]
+[sub_resource type="Resource" id="Resource_g1jpe"]
 script = ExtResource("5_cf3mg")
 amount = 2500
 enabled = true
@@ -38,7 +38,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 1
 
-[sub_resource type="Resource" id="Resource_pk40n"]
+[sub_resource type="Resource" id="Resource_4iucx"]
 script = ExtResource("6_gfk5h")
 position = Vector3(0.15, 0.15, 0.15)
 rotation = Vector3(5, 360, 5)
@@ -49,7 +49,7 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 2
 
-[sub_resource type="Resource" id="Resource_n47av"]
+[sub_resource type="Resource" id="Resource_ca6n6"]
 script = ExtResource("7_10v4x")
 iterations = 3
 offset_step = 0.2
@@ -61,7 +61,7 @@ custom_seed = 0
 restrict_height = true
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_71mk4"]
+[sub_resource type="Resource" id="Resource_sfwie"]
 script = ExtResource("8_ti02w")
 ray_direction = Vector3(0, -1, 0)
 ray_length = 5.0
@@ -77,9 +77,9 @@ custom_seed = 0
 restrict_height = false
 reference_frame = 0
 
-[sub_resource type="Resource" id="Resource_kdck2"]
+[sub_resource type="Resource" id="Resource_yopa3"]
 script = ExtResource("4_bmc6b")
-stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_ynv45"), SubResource("Resource_pk40n"), SubResource("Resource_n47av"), SubResource("Resource_71mk4")])
+stack = Array[Resource("res://addons/proton_scatter/src/modifiers/base_modifier.gd")]([SubResource("Resource_g1jpe"), SubResource("Resource_4iucx"), SubResource("Resource_ca6n6"), SubResource("Resource_sfwie")])
 
 [sub_resource type="Resource" id="Resource_1ifvj"]
 script = ExtResource("11_fmeb0")
@@ -120,7 +120,7 @@ mesh = SubResource("PlaneMesh_1vp36")
 
 [node name="ProtonScatter" type="Node3D" parent="Environment/CSGMesh3D"]
 script = ExtResource("3_v0iub")
-modifier_stack = SubResource("Resource_kdck2")
+modifier_stack = SubResource("Resource_yopa3")
 Performance/use_chunks = true
 Performance/chunk_dimensions = Vector3(15, 15, 15)
 
