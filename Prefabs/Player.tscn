@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://c6aqredf4dbx2"]
+[gd_scene load_steps=41 format=3 uid="uid://c6aqredf4dbx2"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_mn3nj"]
 [ext_resource type="Script" path="res://Scripts/shakeable_camera.gd" id="2_adyn8"]
@@ -810,6 +810,8 @@ height = 1.50857
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pq6w0"]
 height = 3.0
 
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_hwjal"]
+
 [node name="Player" type="CharacterBody3D" groups=["Persistent", "Player"]]
 script = ExtResource("1_mn3nj")
 
@@ -826,7 +828,7 @@ bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 0.286473, -9.33447e-08)
+bones/0/position = Vector3(0, 0.241525, -7.86989e-08)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Thigh.L"
@@ -834,28 +836,28 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 2.38419e-07, -1.64038e-08, 0.99763, 0.0688024, -2.37854e-07, -0.0688024, 0.99763, 0.5, 2, -3.25841e-07)
 bones/1/enabled = true
 bones/1/position = Vector3(0.5, 2, -3.25841e-07)
-bones/1/rotation = Quaternion(-0.158881, -0.0613451, -0.00989163, 0.98534)
+bones/1/rotation = Quaternion(-0.146585, -0.0614637, -0.00912607, 0.987245)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Shin.L"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, -3.33084e-08, 2.33815e-09, 3.33084e-08, 0.990193, -0.139706, 2.33814e-09, 0.139706, 0.990193, 1.33985e-08, 2.90689, 1.49012e-08)
 bones/2/enabled = true
 bones/2/position = Vector3(1.33985e-08, 2.90689, 1.49012e-08)
-bones/2/rotation = Quaternion(0.31991, 1.26774e-09, 7.60237e-08, 0.947448)
+bones/2/rotation = Quaternion(0.295719, -2.3572e-09, 6.90368e-08, 0.955275)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Thigh.R"
 bones/3/parent = 0
 bones/3/rest = Transform3D(1, 0, -2.38419e-07, 1.64038e-08, 0.99763, 0.0688024, 2.37854e-07, -0.0688024, 0.99763, -0.5, 2, -3.25841e-07)
 bones/3/enabled = true
 bones/3/position = Vector3(-0.5, 2, -3.25841e-07)
-bones/3/rotation = Quaternion(-0.158881, 0.0613451, 0.00989163, 0.98534)
+bones/3/rotation = Quaternion(-0.146585, 0.0614637, 0.00912607, 0.987245)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Shin.R"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 3.33084e-08, -2.33815e-09, -3.33084e-08, 0.990193, -0.139706, -2.33814e-09, 0.139706, 0.990193, -1.33985e-08, 2.90689, 1.49012e-08)
 bones/4/enabled = true
 bones/4/position = Vector3(-1.33985e-08, 2.90689, 1.49012e-08)
-bones/4/rotation = Quaternion(0.31991, -2.37777e-09, -7.74745e-08, 0.947448)
+bones/4/rotation = Quaternion(0.29572, 7.58532e-10, -6.89485e-08, 0.955275)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "HeelIK.L"
 bones/5/parent = -1
@@ -979,6 +981,7 @@ shape = SubResource("CapsuleShape3D_pq6w0")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.44764, 0)
+stream = SubResource("AudioStreamPolyphonic_hwjal")
 volume_db = -1.0
 max_db = 1.5
 pitch_scale = 0.01

@@ -237,6 +237,7 @@ func handle_getting_up() -> void:
 
 func dash(input_dir) -> void:
 	if dash_timer >= DASH_TIME && is_on_floor() && input_dir.y >= 0:
+		shakeable_camera.add_trauma(.5)
 		full_collision.disabled = true
 		animTree.set("parameters/conditions/get up", false)
 		animTree.set("parameters/conditions/dash", true)
