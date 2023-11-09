@@ -94,6 +94,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("Dash"):
 		dash(input_dir)
 	
+	handle_head_tilt(input_dir)
+	
 	move_and_slide()
 
 
@@ -256,6 +258,7 @@ func dash(input_dir) -> void:
 		dash_timer = 0.0
 		has_dashed = true
 
+
 func save():
 	var save_dict = {
 		"filename" : get_scene_file_path(),
@@ -265,3 +268,15 @@ func save():
 		"pos_z" : position.z,
 	}
 	return save_dict
+
+
+func handle_head_tilt(input_dir):
+	if input_dir.x == 0:
+		if cam.rotation.z != 0:
+			cam.rotation.z = lerp_angle(cam.rotation.z, 0, LEG_ROTATION_SPEED)
+	elif input_dir.x < 0:
+		if cam.rotation.z != 170:
+			cam.rotation.z = lerp_angle(cam.rotation.z, 170, LEG_ROTATION_SPEED)
+	elif input_dir.x > 0:
+		if cam.rotation.z != -170:
+			cam.rotation.z = lerp_angle(cam.rotation.z, -170, LEG_ROTATION_SPEED)
