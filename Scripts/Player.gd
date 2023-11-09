@@ -32,16 +32,17 @@ var sonic_timer = 0.0
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@onready var vcam = $FPSHolder/CameraHolder/ShakeableCamera/Camera3D
+@onready var vcam = $FPSHolder/CameraHolder/ShakeableCamera/HeadTiltHolder/Camera3D
 @onready var shakeable_camera = $FPSHolder/CameraHolder/ShakeableCamera
 @onready var fps_holder = $FPSHolder
 @onready var cam = $FPSHolder/CameraHolder
 @onready var animTree = $FPSHolder/SK_Legs/AnimationTree
 @onready var animPlayer = $FPSHolder/SK_Legs/AnimationPlayer
 @onready var sk_legs = $FPSHolder/SK_Legs
-@onready var speed_lines = $FPSHolder/CameraHolder/ShakeableCamera/Camera3D/SpeedLines
+@onready var speed_lines = $FPSHolder/CameraHolder/ShakeableCamera/HeadTiltHolder/Camera3D/SpeedLines
 @onready var gun_camera = $FPSHolder/CameraHolder/ShakeableCamera/SubViewportContainer/SubViewport/GunCamera
 @onready var gun_viewport = $FPSHolder/CameraHolder/ShakeableCamera/SubViewportContainer/SubViewport
+@onready var head_tilt_holder = $FPSHolder/CameraHolder/ShakeableCamera/HeadTiltHolder
 
 var is_dashing = false
 const DASH_TIME = 2.0
@@ -272,11 +273,11 @@ func save():
 
 func handle_head_tilt(input_dir):
 	if input_dir.x == 0:
-		if cam.rotation.z != 0:
-			cam.rotation.z = lerp_angle(cam.rotation.z, 0, LEG_ROTATION_SPEED)
+		if head_tilt_holder.rotation.z != 0:
+			head_tilt_holder.rotation.z = lerp_angle(head_tilt_holder.rotation.z, 0, LEG_ROTATION_SPEED)
 	elif input_dir.x < 0:
-		if cam.rotation.z != 170:
-			cam.rotation.z = lerp_angle(cam.rotation.z, 170, LEG_ROTATION_SPEED)
+		if head_tilt_holder.rotation.z != 170:
+			head_tilt_holder.rotation.z = lerp_angle(head_tilt_holder.rotation.z, 170, LEG_ROTATION_SPEED)
 	elif input_dir.x > 0:
-		if cam.rotation.z != -170:
-			cam.rotation.z = lerp_angle(cam.rotation.z, -170, LEG_ROTATION_SPEED)
+		if head_tilt_holder.rotation.z != -170:
+			head_tilt_holder.rotation.z = lerp_angle(head_tilt_holder.rotation.z, -170, LEG_ROTATION_SPEED)

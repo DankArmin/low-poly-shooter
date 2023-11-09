@@ -13,7 +13,7 @@ var shake := 0.0
 
 var time := 0.0
 
-@onready var camera := $Camera3D as Camera3D 
+@onready var camera := $HeadTiltHolder/Camera3D as Camera3D 
 @onready var initial_rotation := camera.rotation_degrees as Vector3
 
 func _process(delta):

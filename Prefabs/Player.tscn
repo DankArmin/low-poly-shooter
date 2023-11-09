@@ -810,7 +810,7 @@ height = 1.50857
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pq6w0"]
 height = 3.0
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_4tmwf"]
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_iih8y"]
 
 [node name="Player" type="CharacterBody3D" groups=["Persistent", "Player"]]
 script = ExtResource("1_mn3nj")
@@ -828,7 +828,7 @@ bones/0/name = "Root"
 bones/0/parent = -1
 bones/0/rest = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 bones/0/enabled = true
-bones/0/position = Vector3(0, 0.318081, -1.03644e-07)
+bones/0/position = Vector3(0, 0.21993, -7.16624e-08)
 bones/0/rotation = Quaternion(0, 0, 0, 1)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/name = "Thigh.L"
@@ -836,28 +836,28 @@ bones/1/parent = 0
 bones/1/rest = Transform3D(1, 0, 2.38419e-07, -1.64038e-08, 0.99763, 0.0688024, -2.37854e-07, -0.0688024, 0.99763, 0.5, 2, -3.25841e-07)
 bones/1/enabled = true
 bones/1/position = Vector3(0.5, 2, -3.25841e-07)
-bones/1/rotation = Quaternion(-0.167076, -0.0612606, -0.0104018, 0.983984)
+bones/1/rotation = Quaternion(-0.140263, -0.0615208, -0.00873243, 0.988163)
 bones/1/scale = Vector3(1, 1, 1)
 bones/2/name = "Shin.L"
 bones/2/parent = 1
 bones/2/rest = Transform3D(1, -3.33084e-08, 2.33815e-09, 3.33084e-08, 0.990193, -0.139706, 2.33814e-09, 0.139706, 0.990193, 1.33985e-08, 2.90689, 1.49012e-08)
 bones/2/enabled = true
 bones/2/position = Vector3(1.33985e-08, 2.90689, 1.49012e-08)
-bones/2/rotation = Quaternion(0.335946, 1.9725e-09, 8.0793e-08, 0.941881)
+bones/2/rotation = Quaternion(0.283226, -4.19931e-09, 6.82941e-08, 0.959053)
 bones/2/scale = Vector3(1, 1, 1)
 bones/3/name = "Thigh.R"
 bones/3/parent = 0
 bones/3/rest = Transform3D(1, 0, -2.38419e-07, 1.64038e-08, 0.99763, 0.0688024, 2.37854e-07, -0.0688024, 0.99763, -0.5, 2, -3.25841e-07)
 bones/3/enabled = true
 bones/3/position = Vector3(-0.5, 2, -3.25841e-07)
-bones/3/rotation = Quaternion(-0.167074, 0.0612607, 0.0104017, 0.983984)
+bones/3/rotation = Quaternion(-0.140263, 0.0615208, 0.00873243, 0.988163)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/name = "Shin.R"
 bones/4/parent = 3
 bones/4/rest = Transform3D(1, 3.33084e-08, -2.33815e-09, -3.33084e-08, 0.990193, -0.139706, -2.33814e-09, 0.139706, 0.990193, -1.33985e-08, 2.90689, 1.49012e-08)
 bones/4/enabled = true
 bones/4/position = Vector3(-1.33985e-08, 2.90689, 1.49012e-08)
-bones/4/rotation = Quaternion(0.335946, 1.73858e-09, -8.07352e-08, 0.941881)
+bones/4/rotation = Quaternion(0.283226, 2.50871e-09, -6.75133e-08, 0.959053)
 bones/4/scale = Vector3(1, 1, 1)
 bones/5/name = "HeelIK.L"
 bones/5/parent = -1
@@ -929,27 +929,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0127712, 0.251448)
 script = ExtResource("2_adyn8")
 noise = SubResource("FastNoiseLite_0iqk5")
 
-[node name="Camera3D" type="Camera3D" parent="FPSHolder/CameraHolder/ShakeableCamera"]
-cull_mask = 1048573
-current = true
-
-[node name="SpeedLines" type="GPUParticles3D" parent="FPSHolder/CameraHolder/ShakeableCamera/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.5)
-visible = false
-amount = 25
-local_coords = true
-trail_enabled = true
-process_material = SubResource("ParticleProcessMaterial_ds1dc")
-draw_pass_1 = SubResource("RibbonTrailMesh_snsu0")
-
-[node name="WeaponHolder" type="Node3D" parent="FPSHolder/CameraHolder/ShakeableCamera/Camera3D"]
-script = ExtResource("3_pg1f8")
-sway_left = Vector3(0, -0.15, 0)
-sway_right = Vector3(0, 0.15, 0)
-
-[node name="FPSPumpShotgun" parent="FPSHolder/CameraHolder/ShakeableCamera/Camera3D/WeaponHolder" node_paths=PackedStringArray("player_reference") instance=ExtResource("5_dclpi")]
-player_reference = NodePath("../../../../../..")
-
 [node name="SubViewportContainer" type="SubViewportContainer" parent="FPSHolder/CameraHolder/ShakeableCamera"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -971,6 +950,29 @@ render_target_update_mode = 4
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.246466)
 cull_mask = 1047554
 
+[node name="HeadTiltHolder" type="Node3D" parent="FPSHolder/CameraHolder/ShakeableCamera"]
+
+[node name="Camera3D" type="Camera3D" parent="FPSHolder/CameraHolder/ShakeableCamera/HeadTiltHolder"]
+cull_mask = 1048573
+current = true
+
+[node name="SpeedLines" type="GPUParticles3D" parent="FPSHolder/CameraHolder/ShakeableCamera/HeadTiltHolder/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0.5)
+visible = false
+amount = 25
+local_coords = true
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_ds1dc")
+draw_pass_1 = SubResource("RibbonTrailMesh_snsu0")
+
+[node name="WeaponHolder" type="Node3D" parent="FPSHolder/CameraHolder/ShakeableCamera/HeadTiltHolder/Camera3D"]
+script = ExtResource("3_pg1f8")
+sway_left = Vector3(0, -0.15, 0)
+sway_right = Vector3(0, 0.15, 0)
+
+[node name="FPSPumpShotgun" parent="FPSHolder/CameraHolder/ShakeableCamera/HeadTiltHolder/Camera3D/WeaponHolder" node_paths=PackedStringArray("player_reference") instance=ExtResource("5_dclpi")]
+player_reference = NodePath("../../../../../../..")
+
 [node name="SmallCollision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.485493, 0.269699)
 shape = SubResource("CapsuleShape3D_bmb53")
@@ -981,9 +983,9 @@ shape = SubResource("CapsuleShape3D_pq6w0")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.44764, 0)
-stream = SubResource("AudioStreamPolyphonic_4tmwf")
+stream = SubResource("AudioStreamPolyphonic_iih8y")
 volume_db = -1.0
 max_db = 1.5
 pitch_scale = 0.01
 
-[connection signal="on_shoot" from="FPSHolder/CameraHolder/ShakeableCamera/Camera3D/WeaponHolder/FPSPumpShotgun" to="FPSHolder/CameraHolder/ShakeableCamera" method="add_trauma" binds= [0.75]]
+[connection signal="on_shoot" from="FPSHolder/CameraHolder/ShakeableCamera/HeadTiltHolder/Camera3D/WeaponHolder/FPSPumpShotgun" to="FPSHolder/CameraHolder/ShakeableCamera" method="add_trauma" binds= [0.75]]
